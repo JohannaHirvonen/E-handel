@@ -26,6 +26,9 @@ public class Product {
     public int price() {
         return price;
     }
+    public int getPrice() {
+        return price;
+    }
 
     public String formatedStringForFile() {
         return this.name + "," + this.catagory + "," + this.price;
