@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Order {
 
+    public static final String FILE_NAME = "Order.txt";
     private double totalPrice;
     private LocalDateTime timeCreated;
     private LocalDateTime timeCompleted;
@@ -71,14 +72,4 @@ public class Order {
         }
         return productString.toString();
     }
-    /*
-produkter
-pris
-antal
-totalsumma
-datum
-användare/kund (Customer)
- */
-
-
 }
