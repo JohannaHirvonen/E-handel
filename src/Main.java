@@ -61,6 +61,16 @@ public class Main {
         String enteredUsername = scan.nextLine();
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
+        LoginSystem ls = new LoginSystem();
+        if(ls.authenticate(enteredUsername, enteredPassword)){
+            usermenu();
+        } else {
+            System.out.println("Du angav fel användarnamn eller lösenord.");
+            System.out.println("1. Logga in");
+            System.out.println("2. Registrera ny användare");
+            System.out.println("3. Avsluta");
+            String choice = scan.nextLine();
+        }
 
     }
 
