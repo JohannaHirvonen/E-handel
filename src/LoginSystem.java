@@ -27,3 +27,7 @@ public class LoginSystem {
         return username.equals(adminUsername);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c03fdb85028056f5637e4269fe04f4b4c36b579f
