@@ -80,8 +80,55 @@ public class Main {
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
-
     }
+
+
+    public void registerProduct() {
+        Product product = new Product();
+        Scanner scan = new Scanner(System.in);
+
+        String productName = "";
+        String catagory = "";
+        int price = 0;
+
+        boolean run = true;
+        while (run) {
+            System.out.println("Registrera en produkt" +
+                    "\n1. Produkt - " + productName +
+                    "\n2. Kategori - " + catagory +
+                    "\n3. Pris - " + price +
+                    "\n4. Spara" +
+                    "\nQ. Gå tillbaka" +
+                    "\n\n Val -");
+            String choice = scan.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Produkt: ");
+                    productName = scan.nextLine();
+                    break;
+                case "2":
+                    System.out.println("Kategori: ");
+                    catagory = scan.nextInt();
+                    break;
+                case "3":
+                    System.out.println("Pris: ");
+                    price = scan.nextLine();
+                    break;
+                case "4":
+                    Product tempProduct = new Product(productName, catagory, price);
+                    Object productHandler;
+                    productHandler.addProdctToList(tempProduct);
+                    run = false;
+                    break;
+                case "Q":
+                    run = false;
+                    break;
+                default:
+                    System.out.println("Måste välja 1 - 4  eller Q.");
+            }
+        }
+
     private static void usermenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -135,9 +182,14 @@ public class Main {
             System.out.print("Enter your choice: ");
             String choice = scan.nextLine();
 
+
+//productHandler Objekt
+            //använd den i add product case 1 och remove product case 2
+
+
             switch (choice) {
                 case "1":
-
+                registerProduct();
                     break;
                 case "2":
 
@@ -156,4 +208,10 @@ public class Main {
             }
         }
     }
-}
+
+    }
+
+
+
+//När vi startar programmet, låsa in användare, läsa in alla produkter från textfilen till produktlistan (initierad)
+//

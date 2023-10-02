@@ -47,7 +47,7 @@ public class ProductHandler {
         System.out.println();
         return true;
     }
-
+    
     public void addProductToList(Product newProduct) {
         if (addProductToTextFile(newProduct)) {
             this.list.add(newProduct);
@@ -73,7 +73,7 @@ public class ProductHandler {
     }
 
     public void removeProductToList(Product oldProduct) {
-        if (removeProductToTextFile()){
+        if (removeProductToTextFile()) {
             this.list.remove(oldProduct);
         }
     }
@@ -82,7 +82,7 @@ public class ProductHandler {
         try {
             FileOutputStream fos = new FileOutputStream(this.fileName);
             PrintStream printStream = new PrintStream(fos);
-            for (Product product: list) {
+            for (Product product : list) {
                 printStream.print("\n" + product.formatedStringForFile());
             }
 
