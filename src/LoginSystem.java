@@ -26,36 +26,4 @@ public class LoginSystem {
         String adminUsername = "admin";
         return username.equals(adminUsername);
     }
-
-    public static void main(String[] args) {
-        LoginSystem loginSystem = new LoginSystem();
-
-        // Skapa användare och lägg till dem i systemet
-        User user1 = new User("user1", "password1");
-        User user2 = new User("user2", "password2");
-        User adminUser = new User("admin", "adminpassword");
-
-        loginSystem.addUser(user1);
-        loginSystem.addUser(user2);
-        loginSystem.addUser(adminUser);
-
-        // Försök att logga in som användare eller admin
-        String usernameToLogin = "user1";
-        String passwordToLogin = "password1";
-
-        if (loginSystem.authenticate(usernameToLogin, passwordToLogin)) {
-            System.out.println("Inloggning lyckades!");
-            if (loginSystem.isAdmin(usernameToLogin)) {
-                System.out.println("Du är en admin.");
-            }
-        } else {
-            System.out.println("Inloggning misslyckades.");
-        }
-    }
-}
-
-// private List<Customer> customers;
-//private Customer loggedInCustomer;
-
-// Konstruktor och metoder för inloggning och utloggning
 }

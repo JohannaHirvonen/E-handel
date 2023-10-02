@@ -2,16 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello group!");
-        Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome");
         displayMainMenu();
 
-        System.out.println(Product.list());
-        Product vara = new Product();
-
-        vara.createFile();
     }
     public static void displayMainMenu() {
         Scanner scan = new Scanner(System.in);

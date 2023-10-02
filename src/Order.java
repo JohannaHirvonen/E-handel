@@ -50,7 +50,7 @@ public class Order {
     private void printProducts() {
         System.out.println("Produkter: ");
         for(Product product : products){
-            System.out.println(product.name() + "..............." + product.getPrice());
+            System.out.println(product.getName() + "..............." + product.getPrice());
         }
     }
 
@@ -67,7 +67,7 @@ public class Order {
     private String productsToString(){
         StringBuilder productString = new StringBuilder();
         for (Product product : products) {
-            productString.append(" ").append(product.name());
+            productString.append(" ").append(product.getName());
         }
         return productString.toString();
     }
