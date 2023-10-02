@@ -82,7 +82,81 @@ public class Main {
         }
     }
 
+    private static void usermenu() {
+        Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while (run) {
+            System.out.println("Meny:\n");
+            System.out.println("1.See product list" +
+                    "\n2.Add product to cart" +
+                    "\n3.Remove product from cart" +
+                    "\n4.See shopping cart" +
+                    "\n5.Buy order" +
+                    "\n6.Cancel order" +
+                    "\n7.Save shopping cart" +
+                    "\n8.See purchase history" +
+                    "\n9.Logout");
+            System.out.println("Enter your choice: ");
+            String choice = scan.nextLine();
 
+            switch (choice) {
+                case "1":
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "6":
+                    break;
+                case "7":
+                    break;
+                case "8":
+                    break;
+                case "9":
+                    run = false;
+                    break;
+            }
+        }
+    }
+
+    private static void adminMeny() {
+        Scanner scan = new Scanner(System.in);
+        boolean run = true;
+        while (run) {
+            System.out.println("Admin Meny: \n");
+            System.out.println("1.Add product");
+            System.out.println("2.Remove product");
+            System.out.println("3.View customer information");
+            System.out.println("4.Edit customer information");
+            System.out.println("5.Logout");
+            System.out.print("Enter your choice: ");
+            String choice = scan.nextLine();
+
+            switch (choice) {
+                case "1":
+                registerProduct();
+                    break;
+                case "2":
+                deleteProduct();
+                    break;
+                case "3":
+                viewCustomerInfo();
+                    break;
+                case "4":
+                editCustomerInfo();
+                    break;
+                case "5":
+                    run  = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
     public void registerProduct() {
         Product product = new Product();
         Scanner scan = new Scanner(System.in);
@@ -128,90 +202,20 @@ public class Main {
                     System.out.println("Måste välja 1 - 4  eller Q.");
             }
         }
-
-    private static void usermenu() {
-        Scanner scan = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
-            System.out.println("Meny:\n");
-            System.out.println("1.See product list" +
-                    "\n2.Add product to cart" +
-                    "\n3.Remove product from cart" +
-                    "\n4.See shopping cart" +
-                    "\n5.Buy order" +
-                    "\n6.Cancel order" +
-                    "\n7.Save shopping cart" +
-                    "\n8.See purchase history" +
-                    "\n9.Logout");
-            System.out.println("Enter your choice: ");
-            String choice = scan.nextLine();
-
-            switch (choice) {
-                case "1":
-                    break;
-                case "2":
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    break;
-                case "5":
-                    break;
-                case "6":
-                    break;
-                case "7":
-                    break;
-                case "8":
-                    break;
-                case "9":
-                    run = false;
-                    break;
-            }
-        }
     }
-    private static void adminMeny() {
-        Scanner scan = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
-            System.out.println("Admin Meny: \n");
-            System.out.println("1.Add product");
-            System.out.println("2.Remove product");
-            System.out.println("3.View customer information");
-            System.out.println("4.Edit customer information");
-            System.out.println("5.Logout");
-            System.out.print("Enter your choice: ");
-            String choice = scan.nextLine();
+    public void deleteProduct(){
 
-
-//productHandler Objekt
-            //använd den i add product case 1 och remove product case 2
-
-
-            switch (choice) {
-                case "1":
-                registerProduct();
-                    break;
-                case "2":
-
-                    break;
-                case "3":
-
-                    break;
-                case "4":
-
-                    break;
-                case "5":
-                    run  = false;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
     }
 
+    public void viewCustomerInfo(){
+
     }
+
+    public void editCustomerInfo(){
+
+    }
+}
 
 
 
 //När vi startar programmet, låsa in användare, läsa in alla produkter från textfilen till produktlistan (initierad)
-//
