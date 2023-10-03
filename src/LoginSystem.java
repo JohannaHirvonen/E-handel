@@ -1,14 +1,34 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class LoginSystem {
     private static final String FILENAME = "Customer.txt";
-//    TODO create file, readfromfile
     private ArrayList<Customer> customerList;
 
     public LoginSystem() {
+        Utility.createTextFile(FILENAME);
         customerList = new ArrayList<>();
-        //initiate list from file
+        readFromFile();
+    }
+
+    public void readFromFile() {
+            try {
+                Scanner scan = new Scanner(new File(FILENAME));
+                while (scan.hasNextLine()) {
+                    String line = scan.nextLine();
+                    String[] customerInfo = line.split(",");
+
+                    Customer tempCustomer = new Customer(
+                            customerInfo[0],
+                            customerInfo[1]);
+                    customerList.add(tempCustomer);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(" FEL!!! " + e.getMessage());
+            }
     }
 
     public void addCustomer(Customer customer) {

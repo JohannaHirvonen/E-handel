@@ -9,7 +9,7 @@ public class Main {
 //            - Product - ProductHandler
 
         System.out.println("Welcome");
-        ECommerceSystem.displayMainMenu();
+        new ECommerceSystem().displayMainMenu();
 
     }
 }

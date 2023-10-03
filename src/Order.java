@@ -11,8 +11,7 @@ public class Order {
     private ArrayList<Product> products;
     private boolean completed;
 
-    public Order(Customer customer){
-        this.customer = customer;
+    public Order(){
         timeCreated = LocalDateTime.now();
         products = new ArrayList<>();
     }

@@ -1,15 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TransferQueue;
 
 public class ECommerceSystem {
-    public static void displayMainMenu() {
+
+    public LoginSystem loginSystem = new LoginSystem();
+    public ProductHandler productHandler = new ProductHandler();
+// TODO public OrderHandler orderHandler = new OrderHandler();
+    public void displayMainMenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
             System.out.println("Main Menu:");
-            System.out.println("\n1.Register as a user" +
-                    "\n2.Login for user" +
+            System.out.println("\n1.Register as a customer" +
+                    "\n2.Login for customer" +
                     "\n3.Login for admin" +
                     "\n4.Exit the program");
             System.out.println("Enter your choice: ");
@@ -17,10 +22,10 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
-                    registerUser();
+                    registerCustomer();
                     break;
                 case "2":
-                    loginUser();
+                    loginCustomer();
                     break;
                 case "3":
                     adminLogin();
@@ -35,7 +40,7 @@ public class ECommerceSystem {
             }
         }
     }
-    public static void registerUser() {
+    public void registerCustomer() {
         Scanner scan = new Scanner(System.in);
         String username;
         do {
@@ -49,10 +54,12 @@ public class ECommerceSystem {
             password = scan.nextLine();
         } while (!isValidPassword(password));
 
+        Customer customer = new Customer(username, password);
+        loginSystem.addCustomer(customer);
         System.out.println("Registration successful!");
     }
 
-    public static boolean isValidUsername(String username) {
+    public boolean isValidUsername(String username) {
         if (!username.matches("^[A-Za-z0-9]+$")) {
             System.out.println("Invalid username! Please use letters and numbers only.");
             return false;
@@ -64,24 +71,23 @@ public class ECommerceSystem {
         return true;
     }
 
-    public static boolean isValidPassword(String password) {
+    public boolean isValidPassword(String password) {
         if (password.length() < 6) {
             System.out.println("Invalid password! Please enter at least 6 characters.");
             return false;
         }
         return true;
     }
-    private static void loginUser() {
+    private void loginCustomer() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String enteredUsername = scan.nextLine();
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
-        LoginSystem loginSystem = new LoginSystem(); //TODO make global
         if(loginSystem.authenticate(enteredUsername, enteredPassword)){
             Customer customer = new Customer(enteredUsername, enteredPassword);
             loginSystem.addCustomer(customer);
-            usermenu(customer);
+            customerMenu(customer);
         } else {
             System.out.println("Wrong username or password.");
             System.out.println("1. Logga in");
@@ -98,7 +104,8 @@ public class ECommerceSystem {
         String enteredUsername = scan.nextLine();
         System.out.print("Enter password: ");
         String enteredPassword = scan.nextLine();
-        if (enteredUsername.equals(Login.adminUsername) && enteredPassword.equals(Login.adminPassword)) {
+        if (enteredUsername.equals(AdminCredentials.ADMIN_NAME.getValue())
+                && enteredPassword.equals(AdminCredentials.ADMIN_PASSWORD.getValue())) {
             System.out.println("Admin login successful!");
             adminMeny();
         } else {
@@ -106,7 +113,7 @@ public class ECommerceSystem {
         }
     }
 
-    private static void usermenu(Customer customer) {
+    private void customerMenu(Customer customer) {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
@@ -120,18 +127,16 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
-//                    Product.getAll();
+                    // TODO productHandler.printProductList();
 //                    - välj produkt, lägg till i varukorg
+//                    customer.getCart().addProduct();
 //                    - gå tillbaka
                     break;
                 case "2":
-                    Order cart = Customer.getCart();
-                    cart.printOrder();
-                    cart.addProduct();
-//                            "\n3.Remove product from cart" +
-//                            "\n5.Buy order" +
-//                            "\n6.Cancel order" +
-                    customerAddProductToCart();
+                   //TODO customer.printCart();
+//                    - Remove product from cart"
+//                    - Buy order: customer.getCart().makePurchase();
+//                    - Cancel order
                     break;
                 case "9":
                     run = false;
@@ -139,37 +144,6 @@ public class ECommerceSystem {
             }
         }
     }
-    public void customerSeeProductList(){
-
-    }
-    public void customerAddProductToCart(){
-
-    }
-
-    public void customerRemoveProcutFromCart(){
-
-    }
-
-    public void customerSeeShoppingCart(){
-
-    }
-
-    public void customerPurchase(){
-
-    }
-
-    public void customerCancelOrder(){
-
-    }
-
-    public void customerSaveShoppingCart(){
-
-    }
-
-    public void customerSeePurchaseHistory(){
-
-    }
-
 
     private static void adminMeny() {
         Scanner scan = new Scanner(System.in);
@@ -207,21 +181,6 @@ public class ECommerceSystem {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    }
-
-    public void printProductList(){
-
-    }
-    public void adminDeleteProduct(){
-
-    }
-
-    public void adminViewCustomerInfo(){
-
-    }
-
-    public void adminEditCustomerInfo(){
-
     }
 }
 

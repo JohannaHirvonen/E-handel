@@ -3,8 +3,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductHandler {
-    private ArrayList<Product> productList = new ArrayList<Product>();
+    private ArrayList<Product> productList;
     private static final String FILENAME = "Product.txt";
+
+    public ProductHandler(){
+        Utility.createTextFile(FILENAME);
+        productList = new ArrayList<>();
+        readFromFile();
+    }
 
     public void readFromFile() {
         if (!Utility.createTextFile(FILENAME)) {

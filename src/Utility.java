@@ -1,8 +1,6 @@
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Utility {
     private Utility(){
@@ -26,7 +24,7 @@ public class Utility {
         return true;
     }
 
-    public static boolean addItemToTextFile(String fileString, String fileName) {
+        public static boolean addItemToTextFile(String fileString, String fileName) {
         try {
             FileOutputStream fos = new FileOutputStream(fileName, true);
             PrintStream printStream = new PrintStream(fos);
