@@ -127,7 +127,7 @@ public class ECommerceSystem {
         }
     }
     public void customerSeeProductList(){
-        
+
     }
     public void customerAddProductToCart(){
 
@@ -176,13 +176,13 @@ public class ECommerceSystem {
                     registerProduct();
                     break;
                 case "2":
-                    deleteProduct();
+                    adminDeleteProduct();
                     break;
                 case "3":
-                    viewCustomerInfo();
+                    adminViewCustomerInfo();
                     break;
                 case "4":
-                    editCustomerInfo();
+                    adminEditCustomerInfo();
                     break;
                 case "5":
                     run  = false;
@@ -238,15 +238,18 @@ public class ECommerceSystem {
             }
         }
     }
-    public void deleteProduct(){
+    public void printProductList(){
+
+    }
+    public void adminDeleteProduct(){
 
     }
 
-    public void viewCustomerInfo(){
+    public void adminViewCustomerInfo(){
 
     }
 
-    public void editCustomerInfo(){
+    public void adminEditCustomerInfo(){
 
     }
 }
