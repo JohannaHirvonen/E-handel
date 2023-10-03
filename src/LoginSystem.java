@@ -32,6 +32,7 @@ public class LoginSystem {
     }
 
     public void addCustomer(Customer customer) {
+        //TODO check if customer alreday exists
         customerList.add(customer);
         Utility.addItemToTextFile(customer.toFileString(), FILENAME);
     }
