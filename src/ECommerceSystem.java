@@ -97,20 +97,28 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
+                    customerSeeProductList();
                     break;
                 case "2":
+                    customerAddProductToCart();
                     break;
                 case "3":
+                    customerRemoveProcutFromCart();
                     break;
                 case "4":
+                    customerSeeShoppingCart();
                     break;
                 case "5":
+                    customerPurchase();
                     break;
                 case "6":
+                    customerCancelOrder();
                     break;
                 case "7":
+                    customerSaveShoppingCart();
                     break;
                 case "8":
+                    customerSeePurchaseHistory();
                     break;
                 case "9":
                     run = false;
@@ -118,6 +126,37 @@ public class ECommerceSystem {
             }
         }
     }
+    public void customerSeeProductList(){
+        
+    }
+    public void customerAddProductToCart(){
+
+    }
+
+    public void customerRemoveProcutFromCart(){
+
+    }
+
+    public void customerSeeShoppingCart(){
+
+    }
+
+    public void customerPurchase(){
+
+    }
+
+    public void customerCancelOrder(){
+
+    }
+
+    public void customerSaveShoppingCart(){
+
+    }
+
+    public void customerSeePurchaseHistory(){
+
+    }
+
 
     private static void adminMeny() {
         Scanner scan = new Scanner(System.in);
