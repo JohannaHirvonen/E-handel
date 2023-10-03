@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductHandler {
-    private ArrayList<Product> list = new ArrayList<Product>();
-    private String fileName = "Merchandise.txt";
+    private ArrayList<Product> productList = new ArrayList<Product>();
+    private static final String FILENAME = "Product.txt";
 
-    Product() {
-        if (!createFile()) {
+    public void readFromFile() {
+        if (!Utility.createTextFile(FILENAME)) {
             try {
-                Scanner scan = new Scanner(new File(fileName));
+                Scanner scan = new Scanner(new File(FILENAME));
                 while (scan.hasNextLine()) {
                     String product = scan.nextLine();
                     String[] productInfo = product.split(",");
@@ -19,7 +19,7 @@ public class ProductHandler {
                             productInfo[1],
                             Integer.parseInt(productInfo[2])
                     );
-                    list.add(tempProduct);
+                    productList.add(tempProduct);
                 }
             } catch (FileNotFoundException e) {
                 System.out.println(" FEL!!! " + e.getMessage());
@@ -27,62 +27,27 @@ public class ProductHandler {
         }
     }
 
-    public ArrayList<Product> list() {
-        return list;
-    }
-
-    boolean createFile() {
-        File file = new File(fileName);
-        try {
-            if (file.createNewFile()) {
-                System.out.println("Filen har skapats: " + file.getName());
-            } else {
-                System.out.println("Filen " + file.getName() + " finns redan!");
-                System.out.println();
-                return false;
-            }
-        } catch (IOException e) {
-            System.out.println("Ett fel uppstod när vi skulle skapa filen. " + e.getMessage());
-        }
-        System.out.println();
-        return true;
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
     
     public void addProductToList(Product newProduct) {
-        if (addProductToTextFile(newProduct)) {
-            this.list.add(newProduct);
+        if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
+            this.productList.add(newProduct);
         }
     }
 
-    private boolean addProductToTextFile(Product newProduct) {
+    public void removeProductFromList(Product oldProduct) {
+        if (removeProductFromTextFile()) {
+            this.productList.remove(oldProduct);
+        }
+    }
+
+    private boolean removeProductFromTextFile() {
         try {
-            FileOutputStream fos = new FileOutputStream(this.fileName, true);
+            FileOutputStream fos = new FileOutputStream(FILENAME);
             PrintStream printStream = new PrintStream(fos);
-
-            printStream.print("\n" + newProduct.formatedStringForFile());
-            System.out.println(newProduct.formatedStringForFile());
-
-            fos.close();
-            printStream.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println("Det blev galet! " + e.getMessage());
-        }
-
-        return false;
-    }
-
-    public void removeProductToList(Product oldProduct) {
-        if (removeProductToTextFile()) {
-            this.list.remove(oldProduct);
-        }
-    }
-
-    private boolean removeProductToTextFile() {
-        try {
-            FileOutputStream fos = new FileOutputStream(this.fileName);
-            PrintStream printStream = new PrintStream(fos);
-            for (Product product : list) {
+            for (Product product : productList) {
                 printStream.print("\n" + product.formatedStringForFile());
             }
 
@@ -94,5 +59,52 @@ public class ProductHandler {
         }
 
         return false;
+    }
+
+    public void registerProduct() {
+        Product product = new Product();
+        Scanner scan = new Scanner(System.in);
+
+        String productName = "";
+        String catagory = "";
+        int price = 0;
+
+        boolean run = true;
+        while (run) {
+            System.out.println("Registrera en produkt" +
+                    "\n1. Produkt - " + productName +
+                    "\n2. Kategori - " + catagory +
+                    "\n3. Pris - " + price +
+                    "\n4. Spara" +
+                    "\nQ. Gå tillbaka" +
+                    "\n\n Val -");
+            String choice = scan.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Produkt: ");
+                    productName = scan.nextLine();
+                    break;
+                case "2":
+                    System.out.println("Kategori: ");
+                    catagory = scan.nextInt();
+                    break;
+                case "3":
+                    System.out.println("Pris: ");
+                    price = scan.nextLine();
+                    break;
+                case "4":
+                    Product tempProduct = new Product(productName, catagory, price);
+                    Object productHandler;
+                    productHandler.addProdctToList(tempProduct);
+                    run = false;
+                    break;
+                case "Q":
+                    run = false;
+                    break;
+                default:
+                    System.out.println("Måste välja 1 - 4  eller Q.");
+            }
+        }
     }
 }

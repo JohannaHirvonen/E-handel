@@ -7,15 +7,15 @@ public class Order {
     private double totalPrice;
     private LocalDateTime timeCreated;
     private LocalDateTime timeCompleted;
-//    private Customer customer;
+    private Customer customer;
     private ArrayList<Product> products;
     private boolean completed;
 
-//    public Order(Customer customer){
-//        this.customer = customer;
-//        timeCreated = LocalDateTime.now();
-//        products = new ArrayList<>();
-//    }
+    public Order(Customer customer){
+        this.customer = customer;
+        timeCreated = LocalDateTime.now();
+        products = new ArrayList<>();
+    }
 
     public void addProduct(Product product){
         products.add(product);

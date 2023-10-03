@@ -37,12 +37,6 @@ public class ECommerceSystem {
     }
     public static void registerUser() {
         Scanner scan = new Scanner(System.in);
-        String fullName;
-        do {
-            System.out.print("Enter your full name: ");
-            fullName = scan.nextLine();
-        } while (!isValidFullName(fullName));
-
         String username;
         do {
             System.out.print("Enter your username (at least 3 characters long): ");
@@ -58,22 +52,6 @@ public class ECommerceSystem {
         System.out.println("Registration successful!");
     }
 
-    public static boolean isValidFullName(String fullName) {
-        String[] nameParts = fullName.split(" ");
-
-        if (nameParts.length < 2) {
-            System.out.println("Invalid full name! Please enter your name and surname.");
-            return false;
-        }
-
-        for (String part : nameParts) {
-            if (part.length() < 2 || !part.matches("^[A-Za-z]+$")) {
-                System.out.println("Invalid full name! Each word must have at least 2 letters. ");
-                return false;
-            }
-        }
-        return true;
-    }
     public static boolean isValidUsername(String username) {
         if (!username.matches("^[A-Za-z0-9]+$")) {
             System.out.println("Invalid username! Please use letters and numbers only.");
@@ -99,11 +77,13 @@ public class ECommerceSystem {
         String enteredUsername = scan.nextLine();
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
-        LoginSystem ls = new LoginSystem();
-        if(ls.authenticate(enteredUsername, enteredPassword)){
-            usermenu();
+        LoginSystem loginSystem = new LoginSystem(); //TODO make global
+        if(loginSystem.authenticate(enteredUsername, enteredPassword)){
+            Customer customer = new Customer(enteredUsername, enteredPassword);
+            loginSystem.addCustomer(customer);
+            usermenu(customer);
         } else {
-            System.out.println("Du angav fel användarnamn eller lösenord.");
+            System.out.println("Wrong username or password.");
             System.out.println("1. Logga in");
             System.out.println("2. Registrera ny användare");
             System.out.println("3. Avsluta");
@@ -126,47 +106,32 @@ public class ECommerceSystem {
         }
     }
 
-    private static void usermenu() {
+    private static void usermenu(Customer customer) {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
             System.out.println("Meny:\n");
             System.out.println("1.See product list" +
-                    "\n2.Add product to cart" +
-                    "\n3.Remove product from cart" +
-                    "\n4.See shopping cart" +
-                    "\n5.Buy order" +
-                    "\n6.Cancel order" +
-                    "\n7.Save shopping cart" +
-                    "\n8.See purchase history" +
-                    "\n9.Logout");
+                    "\n2.See shopping cart" +
+                    "\n3.See purchase history" +
+                    "\n4.Logout");
             System.out.println("Enter your choice: ");
             String choice = scan.nextLine();
 
             switch (choice) {
                 case "1":
-                    customerSeeProductList();
+//                    Product.getAll();
+//                    - välj produkt, lägg till i varukorg
+//                    - gå tillbaka
                     break;
                 case "2":
+                    Order cart = Customer.getCart();
+                    cart.printOrder();
+                    cart.addProduct();
+//                            "\n3.Remove product from cart" +
+//                            "\n5.Buy order" +
+//                            "\n6.Cancel order" +
                     customerAddProductToCart();
-                    break;
-                case "3":
-                    customerRemoveProcutFromCart();
-                    break;
-                case "4":
-                    customerSeeShoppingCart();
-                    break;
-                case "5":
-                    customerPurchase();
-                    break;
-                case "6":
-                    customerCancelOrder();
-                    break;
-                case "7":
-                    customerSaveShoppingCart();
-                    break;
-                case "8":
-                    customerSeePurchaseHistory();
                     break;
                 case "9":
                     run = false;
@@ -211,28 +176,31 @@ public class ECommerceSystem {
         boolean run = true;
         while (run) {
             System.out.println("Admin Meny: \n");
-            System.out.println("1.Add product");
-            System.out.println("2.Remove product");
-            System.out.println("3.View customer information");
-            System.out.println("4.Edit customer information");
-            System.out.println("5.Logout");
+            System.out.println("1.Edit product list");
+            System.out.println("2.Edit customer information");
+            System.out.println("3. Transaction history");
+            System.out.println("4.Logout");
             System.out.print("Enter your choice: ");
             String choice = scan.nextLine();
 
             switch (choice) {
                 case "1":
-                    registerProduct();
+                    //Add product
+                        //- new Product() + add product to list
+//                    ProductHandler handler = new ProductHandler().addProductToList(new Product());
+                    //remove product
+                    // - are you sure you want to remove this product?
                     break;
                 case "2":
-                    adminDeleteProduct();
+//                    see customer info (name, pasword, order history)
+//                    - add customer
+//                    - edit customer (remove + add)
+//                        - change username
+//                        - change password
                     break;
                 case "3":
-                    adminViewCustomerInfo();
-                    break;
+//                    transaction history - Transaction.getAllOrders();
                 case "4":
-                    adminEditCustomerInfo();
-                    break;
-                case "5":
                     run  = false;
                     break;
                 default:
@@ -240,52 +208,7 @@ public class ECommerceSystem {
             }
         }
     }
-    public void registerProduct() {
-        Product product = new Product();
-        Scanner scan = new Scanner(System.in);
 
-        String productName = "";
-        String catagory = "";
-        int price = 0;
-
-        boolean run = true;
-        while (run) {
-            System.out.println("Registrera en produkt" +
-                    "\n1. Produkt - " + productName +
-                    "\n2. Kategori - " + catagory +
-                    "\n3. Pris - " + price +
-                    "\n4. Spara" +
-                    "\nQ. Gå tillbaka" +
-                    "\n\n Val -");
-            String choice = scan.nextLine();
-
-            switch (choice) {
-                case "1":
-                    System.out.println("Produkt: ");
-                    productName = scan.nextLine();
-                    break;
-                case "2":
-                    System.out.println("Kategori: ");
-                    catagory = scan.nextInt();
-                    break;
-                case "3":
-                    System.out.println("Pris: ");
-                    price = scan.nextLine();
-                    break;
-                case "4":
-                    Product tempProduct = new Product(productName, catagory, price);
-                    Object productHandler;
-                    productHandler.addProdctToList(tempProduct);
-                    run = false;
-                    break;
-                case "Q":
-                    run = false;
-                    break;
-                default:
-                    System.out.println("Måste välja 1 - 4  eller Q.");
-            }
-        }
-    }
     public void printProductList(){
 
     }

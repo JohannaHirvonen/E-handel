@@ -2,9 +2,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class Customer {
+    public String getUserID() {
+        return userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     private String userID;
     private String password;
-    private String fileName = "customers.txt";
+
+
 
     public Customer(String userID, String password) {
         this.userID = userID;

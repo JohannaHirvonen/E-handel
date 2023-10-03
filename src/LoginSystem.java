@@ -2,28 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoginSystem {
-    private List<User> users;
+    private static final String FILENAME = "Customer.txt";
+//    TODO create file, readfromfile
+    private ArrayList<Customer> customerList;
 
     public LoginSystem() {
-        users = new ArrayList<>();
+        customerList = new ArrayList<>();
+        //initiate list from file
     }
 
-    public void addUser(User user) {
-        users.add(user);
+    public void addCustomer(Customer customer) {
+        customerList.add(customer);
+        Utility.addItemToTextFile(customer.toFileString(), FILENAME);
     }
 
     public boolean authenticate(String username, String password) {
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+        for (Customer customer : customerList) {
+            if (customer.getUserID().equals(username) && customer.getPassword().equals(password)) {
                 return true;
             }
         }
         return false;
-    }
-
-    public boolean isAdmin(String username) {
-        // Ange användarnamnet för admin
-        String adminUsername = "admin";
-        return username.equals(adminUsername);
     }
 }
