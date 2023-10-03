@@ -37,13 +37,61 @@ public class ECommerceSystem {
     }
     public static void registerUser() {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Enter your full name: ");
-        String fullName = scan.nextLine();
-        System.out.print("Enter your username: ");
-        String username = scan.nextLine();
-        System.out.print("Enter your password: ");
-        String password = scan.nextLine();
+        String fullName;
+        do {
+            System.out.print("Enter your full name: ");
+            fullName = scan.nextLine();
+        } while (!isValidFullName(fullName));
+
+        String username;
+        do {
+            System.out.print("Enter your username (at least 3 characters long): ");
+            username = scan.nextLine();
+        } while (!isValidUsername(username));
+
+        String password;
+        do {
+            System.out.print("Enter your password (at least 6 characters long): ");
+            password = scan.nextLine();
+        } while (!isValidPassword(password));
+
         System.out.println("Registration successful!");
+    }
+
+    public static boolean isValidFullName(String fullName) {
+        String[] nameParts = fullName.split(" ");
+
+        if (nameParts.length < 2) {
+            System.out.println("Invalid full name! Please enter your name and surname.");
+            return false;
+        }
+
+        for (String part : nameParts) {
+            if (part.length() < 2 || !part.matches("^[A-Za-z]+$")) {
+                System.out.println("Invalid full name! Each word must have at least 2 letters. ");
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean isValidUsername(String username) {
+        if (!username.matches("^[A-Za-z0-9]+$")) {
+            System.out.println("Invalid username! Please use letters and numbers only.");
+            return false;
+        }
+        if (username.length() < 3) {
+            System.out.println("Invalid username! Please enter at least 3 characters.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidPassword(String password) {
+        if (password.length() < 6) {
+            System.out.println("Invalid password! Please enter at least 6 characters.");
+            return false;
+        }
+        return true;
     }
     private static void loginUser() {
         Scanner scan = new Scanner(System.in);
