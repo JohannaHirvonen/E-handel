@@ -28,7 +28,7 @@ public class Utility {
         try {
             FileOutputStream fos = new FileOutputStream(fileName, true);
             PrintStream printStream = new PrintStream(fos);
-
+//          TODO handle first row of file
             printStream.print("\n" + fileString);
 
             fos.close();
