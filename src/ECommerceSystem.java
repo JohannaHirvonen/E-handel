@@ -85,8 +85,8 @@ public class ECommerceSystem {
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
         if(loginSystem.authenticate(enteredUsername, enteredPassword)){
+//            loginSystem.getCustomer(enteredUsername);
             Customer customer = new Customer(enteredUsername, enteredPassword);
-            loginSystem.addCustomer(customer);
             customerMenu(customer);
         } else {
             System.out.println("Wrong username or password.");
