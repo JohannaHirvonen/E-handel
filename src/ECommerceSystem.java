@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TransferQueue;
 
 public class ECommerceSystem {
 
-    public LoginSystem loginSystem = new LoginSystem();
+    public CustomerHandler loginSystem = new CustomerHandler();
     public ProductHandler productHandler = new ProductHandler();
-// TODO public OrderHandler orderHandler = new OrderHandler();
+    public OrderHandler orderHandler = new OrderHandler();
+    public CustomerHandler customerHandler = new CustomerHandler();
     public void displayMainMenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -127,18 +125,21 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
-                    // TODO productHandler.printProductList();
+                    productHandler.printProductList();
 //                    - välj produkt, lägg till i varukorg
 //                    customer.getCart().addProduct();
 //                    - gå tillbaka
                     break;
                 case "2":
-                   //TODO customer.printCart();
+
+                   //TODO customerHandler.printCart();
 //                    - Remove product from cart"
-//                    - Buy order: customer.getCart().makePurchase();
+//                    - Buy order: customerHandler.getCart().makePurchase();
 //                    - Cancel order
                     break;
-                case "9":
+                case "3":
+                    orderHandler.printOrderList();
+                case "4":
                     run = false;
                     break;
             }
@@ -159,10 +160,15 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
+                    ProductHandler.addProductToList(new Product("", "",0));
                     //Add product
                         //- new Product() + add product to list
-//                    ProductHandler handler = new ProductHandler().addProductToList(new Product());
+                   ProductHandler handler = new ProductHandler().addProductToList(new Product());
+
+                    ProductHandler.removeProductFromList();
+                    ProductHandler handler = ProductHandler().removeProductFromList(Product());
                     //remove product
+                    ProductHandler.removeProductYesOrNo();
                     // - are you sure you want to remove this product?
                     break;
                 case "2":

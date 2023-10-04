@@ -1,14 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class LoginSystem {
+public class CustomerHandler {
     private static final String FILENAME = "Customer.txt";
     private ArrayList<Customer> customerList;
 
-    public LoginSystem() {
+    public CustomerHandler() {
         Utility.createTextFile(FILENAME);
         customerList = new ArrayList<>();
         readFromFile();
