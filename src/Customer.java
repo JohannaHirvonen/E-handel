@@ -27,6 +27,19 @@ public class Customer {
     public Order getCart(){
         return cart;
     }
+
+    public void addProductToCart(Product product){
+        cart.addProduct(product);
+    }
+
+    public void removeProductFromCart(Product product){
+        cart.removeProduct(product);
+    }
+
+    public void makePurchase(){
+        cart.makePurchase();
+//        TODO orderHandler.addOrderToList
+    }
     public String toFileString() {
         return this.userID + "," + this.password + ",";
     }
