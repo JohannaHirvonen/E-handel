@@ -34,19 +34,56 @@ public class ProductHandler {
     public ArrayList<Product> getProductList() {
         return productList;
     }
-    
-    public void addProductToList(Product newProduct) {
+
+
+    public void printProductList() {
+
+        if (this.productList.size() == 0) {
+            System.out.println("No product in the inventory!");
+        } else {
+            int maxProductName = 50;
+            int maxCatagory = 50;
+            int maxPrice = 1000;
+
+            String headline = addWhiteSpace("Product Name", maxProductName) + "| " +
+                    addWhiteSpace("Catagory", maxCatagory) + "| " +
+                    addWhiteSpace( "Price", maxPrice) ;
+            System.out.println(headline);
+
+            System.out.println("-".repeat(headline.length()));
+
+            for (int i = 0; i < this.productList.size(); i++) {
+                System.out.println(addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
+                        addWhiteSpace(this.productList.get(i).getCatagory() + "", maxCatagory)+ "| " +
+                        addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
+                if (i%2 == 1){
+                    System.out.println("-".repeat(headline.length()));
+                }
+            }
+        }
+    }
+    private String addWhiteSpace(String text, int maxAmount){
+        if(text.length() > maxAmount){
+            return text.substring(0, maxAmount - 3) + "...";
+        }
+        return text + " ".repeat(maxAmount - text.length());
+    }
+
+    public static void addProductToList(Product newProduct) {
         if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
             this.productList.add(newProduct);
         }
     }
+
 
     public void removeProductFromList(Product oldProduct) {
         if (removeProductFromTextFile()) {
             this.productList.remove(oldProduct);
         }
     }
+    public boolean removeProductYesOrNo(){
 
+    }
     private boolean removeProductFromTextFile() {
         try {
             FileOutputStream fos = new FileOutputStream(FILENAME);
@@ -64,6 +101,7 @@ public class ProductHandler {
 
         return false;
     }
+}
 
 //    public void registerProduct() {
 //        Product product = new Product();
@@ -111,4 +149,4 @@ public class ProductHandler {
 //            }
 //        }
 //    }
-}
+
