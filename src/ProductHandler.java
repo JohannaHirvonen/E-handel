@@ -45,7 +45,7 @@ public class ProductHandler {
             int maxCatagory = 50;
             int maxPrice = 1000;
 
-            String headline = addWhiteSpace("Product Name", maxProductName) + "| " +
+            String headline = "Id" + addWhiteSpace("Product Name", maxProductName) + "| " +
                     addWhiteSpace("Catagory", maxCatagory) + "| " +
                     addWhiteSpace( "Price", maxPrice) ;
             System.out.println(headline);
@@ -53,7 +53,8 @@ public class ProductHandler {
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.productList.size(); i++) {
-                System.out.println(addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
+                System.out.println(i + ": " +
+                        addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
                         addWhiteSpace(this.productList.get(i).getCatagory() + "", maxCatagory)+ "| " +
                         addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
                 if (i%2 == 1){
@@ -69,27 +70,31 @@ public class ProductHandler {
         return text + " ".repeat(maxAmount - text.length());
     }
 
-    public static void addProductToList(Product newProduct) {
+    public void addProductToList(Product newProduct) {
         if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
             this.productList.add(newProduct);
+            System.out.println("Number of products in list: " + productList.size());
         }
     }
 
 
-    public void removeProductFromList(Product oldProduct) {
-        if (removeProductFromTextFile()) {
-            this.productList.remove(oldProduct);
-        }
+    public void removeProductFromList(int id) {
+        this.productList.remove(id);
+        removeProductFromTextFile();
     }
     public boolean removeProductYesOrNo(){
-
+        return false;
     }
     private boolean removeProductFromTextFile() {
         try {
             FileOutputStream fos = new FileOutputStream(FILENAME);
             PrintStream printStream = new PrintStream(fos);
-            for (Product product : productList) {
-                printStream.print("\n" + product.formatedStringForFile());
+            for (int i = 0; i < productList.size(); i++) {
+                if(i == 0){
+                    printStream.print(productList.get(i).formatedStringForFile());
+                } else {
+                    printStream.print("\n" + productList.get(i).formatedStringForFile());
+                }
             }
 
             fos.close();

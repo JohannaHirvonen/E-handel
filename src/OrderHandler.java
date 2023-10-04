@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OrderHandler {
-    private ArrayList<Product> orderList;
+    private ArrayList<Order> orderList;
     private static final String FILENAME = "Order.txt";
 
     public OrderHandler(){
@@ -33,32 +33,32 @@ public class OrderHandler {
     }
 
 
-    public void printOrderList() {
-
-        if (this.orderList.size() == 0) {
-            System.out.println("No order found!");
-        } else {
-            int maxProductName = 50;
-            int maxCatagory = 50;
-            int maxPrice = 1000;
-
-            String headline = addWhiteSpace("Product Name", maxProductName) + "| " +
-                    addWhiteSpace("Catagory", maxCatagory) + "| " +
-                    addWhiteSpace( "Price", maxPrice) ;
-            System.out.println(headline);
-
-            System.out.println("-".repeat(headline.length()));
-
-            for (int i = 0; i < this.orderList.size(); i++) {
-                System.out.println(addWhiteSpace(this.orderList.get(i).getName(), maxProductName) + "| " +
-                        addWhiteSpace(this.orderList.get(i).getCatagory() + "", maxCatagory)+ "| " +
-                        addWhiteSpace(this.orderList.get(i).getPrice() + "", maxPrice));
-                if (i%2 == 1){
-                    System.out.println("-".repeat(headline.length()));
-                }
-            }
-        }
-    }
+//    public void printOrderList() {
+//
+//        if (this.orderList.size() == 0) {
+//            System.out.println("No order found!");
+//        } else {
+//            int maxProductName = 50;
+//            int maxCatagory = 50;
+//            int maxPrice = 1000;
+//
+//            String headline = addWhiteSpace("Product Name", maxProductName) + "| " +
+//                    addWhiteSpace("Catagory", maxCatagory) + "| " +
+//                    addWhiteSpace( "Price", maxPrice) ;
+//            System.out.println(headline);
+//
+//            System.out.println("-".repeat(headline.length()));
+//
+//            for (int i = 0; i < this.orderList.size(); i++) {
+//                System.out.println(addWhiteSpace(this.orderList.get(i).getName(), maxProductName) + "| " +
+//                        addWhiteSpace(this.orderList.get(i).getCatagory() + "", maxCatagory)+ "| " +
+//                        addWhiteSpace(this.orderList.get(i).getPrice() + "", maxPrice));
+//                if (i%2 == 1){
+//                    System.out.println("-".repeat(headline.length()));
+//                }
+//            }
+//        }
+//    }
     private String addWhiteSpace(String text, int maxAmount){
         if(text.length() > maxAmount){
             return text.substring(0, maxAmount - 3) + "...";
@@ -79,7 +79,7 @@ public class OrderHandler {
         }
     }
     public boolean removeOrderYesOrNo(){
-
+        return false;
     }
     private boolean removeOrderFromTextFile() {
         try {

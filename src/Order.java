@@ -59,7 +59,7 @@ public class Order {
         }
     }
 
-    public String toFileString() {
+    public String formatedStringForFile() {
         return
                 //customer.getId() + "," +
                 productsToString() + "," +

@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class ECommerceSystem {
 
-    public CustomerHandler loginSystem = new CustomerHandler();
     public ProductHandler productHandler = new ProductHandler();
     public OrderHandler orderHandler = new OrderHandler();
     public CustomerHandler customerHandler = new CustomerHandler();
@@ -53,7 +52,7 @@ public class ECommerceSystem {
         } while (!isValidPassword(password));
 
         Customer customer = new Customer(username, password);
-        loginSystem.addCustomer(customer);
+        customerHandler.addCustomer(customer);
         System.out.println("Registration successful!");
     }
 
@@ -82,7 +81,7 @@ public class ECommerceSystem {
         String enteredUsername = scan.nextLine();
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
-        if(loginSystem.authenticate(enteredUsername, enteredPassword)){
+        if(customerHandler.authenticate(enteredUsername, enteredPassword)){
 //            loginSystem.getCustomer(enteredUsername);
             Customer customer = new Customer(enteredUsername, enteredPassword);
             customerMenu(customer);
@@ -96,7 +95,7 @@ public class ECommerceSystem {
 
     }
 
-    private static void adminLogin() {
+    private void adminLogin() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter username: ");
         String enteredUsername = scan.nextLine();
@@ -132,13 +131,13 @@ public class ECommerceSystem {
                     break;
                 case "2":
 
-                   //TODO customerHandler.printCart();
+                    //TODO customerHandler.printCart();
 //                    - Remove product from cart"
 //                    - Buy order: customerHandler.getCart().makePurchase();
 //                    - Cancel order
                     break;
                 case "3":
-                    orderHandler.printOrderList();
+//                    orderHandler.printOrderList();
                 case "4":
                     run = false;
                     break;
@@ -146,7 +145,7 @@ public class ECommerceSystem {
         }
     }
 
-    private static void adminMeny() {
+    private void adminMeny() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
@@ -160,16 +159,8 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
-                    ProductHandler.addProductToList(new Product("", "",0));
-                    //Add product
-                        //- new Product() + add product to list
-                   ProductHandler handler = new ProductHandler().addProductToList(new Product());
-
-                    ProductHandler.removeProductFromList();
-                    ProductHandler handler = ProductHandler().removeProductFromList(Product());
-                    //remove product
-                    ProductHandler.removeProductYesOrNo();
-                    // - are you sure you want to remove this product?
+                    productHandler.printProductList();
+                    printProductMenu();
                     break;
                 case "2":
 //                    see customer info (name, pasword, order history)
@@ -187,6 +178,40 @@ public class ECommerceSystem {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
+    }
+
+    private void printProductMenu() {
+        Scanner scanner = new Scanner(System.in);
+        String choice;
+        do {
+            System.out.println("1. Add product to list");
+            System.out.println("2. Remove product from list");
+            System.out.println("3. See product list");
+            //TODO menu choice: see product list
+            System.out.println("4. Close");
+
+            choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Type the name of the product");
+                    String name = scanner.nextLine();
+                    System.out.println("Type the category of the product");
+                    String category = scanner.nextLine();
+                    System.out.println("Set the price");
+                    int price = Integer.parseInt(scanner.nextLine());
+                    productHandler.addProductToList(new Product(name, category, price));
+                    break;
+                case "2":
+                    System.out.println("Which product do you want to remove?");
+                    int id = Integer.parseInt(scanner.nextLine());
+                    productHandler.removeProductFromList(id);
+                    break;
+                case "3":
+                    productHandler.printProductList();
+                default:
+                    System.out.println("Invalid input! Try again.");
+            }
+        } while (!choice.equals("4"));
     }
 }
 
