@@ -1,16 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.TransferQueue;
 
 public class ECommerceSystem {
 
-    public LoginSystem loginSystem = new LoginSystem();
+    public CustomerHandler loginSystem = new CustomerHandler();
     public ProductHandler productHandler = new ProductHandler();
-// TODO
     public OrderHandler orderHandler = new OrderHandler();
-
-   // public CustomerHandler customerHandler = new CustomerHandler();
+    public CustomerHandler customerHandler = new CustomerHandler();
     public void displayMainMenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;

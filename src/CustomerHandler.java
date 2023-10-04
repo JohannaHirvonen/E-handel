@@ -4,36 +4,44 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CustomerHandler {
-    private static final String FILENAME = "Shoppingcart.txt";
-    private ArrayList<CustomerHandler> cartList;
+    private static final String FILENAME = "Customer.txt";
+    private ArrayList<Customer> customerList;
 
     public CustomerHandler() {
         Utility.createTextFile(FILENAME);
-        CustomerHandler = new ArrayList<>();
+        customerList = new ArrayList<>();
         readFromFile();
     }
 
     public void readFromFile() {
-        try {
-            Scanner scan = new Scanner(new File(FILENAME));
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                String[] cartInfo = line.split(",");
+            try {
+                Scanner scan = new Scanner(new File(FILENAME));
+                while (scan.hasNextLine()) {
+                    String line = scan.nextLine();
+                    String[] customerInfo = line.split(",");
 
-                CustomerHandler tempCart = new CustomerHandler(
-                        cartInfo[0],
-                        cartInfo[1]);
-                cartList.add(tempCart);
+                    Customer tempCustomer = new Customer(
+                            customerInfo[0],
+                            customerInfo[1]);
+                    customerList.add(tempCustomer);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(" FEL!!! " + e.getMessage());
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(" FEL!!! " + e.getMessage());
-        }
     }
 
-    public void addProductToCart(Product product) {
+    public void addCustomer(Customer customer) {
         //TODO check if customer alreday exists
-        cartList.add(product);
-        Utility.addItemToTextFile(product.toFileString(), FILENAME);
+        customerList.add(customer);
+        Utility.addItemToTextFile(customer.toFileString(), FILENAME);
     }
 
+    public boolean authenticate(String username, String password) {
+        for (Customer customer : customerList) {
+            if (customer.getUserID().equals(username) && customer.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

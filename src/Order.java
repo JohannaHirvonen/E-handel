@@ -16,6 +16,11 @@ public class Order {
         products = new ArrayList<>();
     }
 
+    //TODO
+//    public Order(LocalDateTime timeCreated, Customer customer, ArrayList<Product> products){
+//
+//    }
+
     public void addProduct(Product product){
         products.add(product);
     }
