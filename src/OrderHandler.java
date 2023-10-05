@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,8 +23,11 @@ public class OrderHandler {
 
                 Order tempOrder = new Order(
                         customerHandler.getCustomer(orderInfo[0]),
-                       orderInfo [1],
-                        orderInfo [2]));
+                        orderInfo [1],
+                        Integer.parseInt(orderInfo[2]),
+                        LocalDateTime.parse(orderInfo[3]),
+                        LocalDateTime.parse(orderInfo[4]),
+                        orderInfo[5]== "true");
 
                 orderList.add(tempOrder);
             }
