@@ -10,6 +10,7 @@ public class Order {
     private LocalDateTime timeCompleted;
     private Customer customer;
     private ArrayList<Product> products;
+    private String receipt;
     private boolean completed;
 
     public Order(){
@@ -17,10 +18,25 @@ public class Order {
         products = new ArrayList<>();
     }
 
-    //TODO
-//    public Order(LocalDateTime timeCreated, Customer customer, ArrayList<Product> products){
-//
-//    }
+    //TODO Order constructor
+    public Order(String customerID, String receipt, int totalPrice, LocalDateTime timeCreated,
+                 LocalDateTime timeCompleted, boolean completed){
+        this.timeCreated = timeCreated;
+        this.customer = customer;
+        this.receipt = receipt;
+    }
+
+    public LocalDateTime getTimeCreated (){
+        return timeCreated;
+    }
+    public Customer getCustomer(){
+        return customer;
+    }
+
+    public ArrayList<Product> getProducts(){
+        return products;
+
+    }
 
     public void addProduct(Product product){
         products.add(product);
@@ -62,7 +78,7 @@ public class Order {
 
     public String formatedStringForFile() {
         return
-                //customer.getId() + "," +
+                customer.getUserID() + "," +
                 productsToString() + "," +
                 totalPrice + "," +
                 timeCreated + "," +

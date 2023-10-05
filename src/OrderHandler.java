@@ -19,8 +19,11 @@ public class OrderHandler {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
 
-                Order tempOrder = new Order();
-                //TODO order constructor
+                Order tempOrder = new Order(
+                        new CustomerHandler().getCustomer(orderInfo[0]),
+                       orderInfo [1],
+                        orderInfo [2]));
+
                 orderList.add(tempOrder);
             }
         } catch (FileNotFoundException e) {
