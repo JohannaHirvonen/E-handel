@@ -125,17 +125,91 @@ public class ECommerceSystem {
             switch (choice) {
                 case "1":
                     productHandler.printProductList();
+                    boolean productMenuActive = true;
+                    while (productMenuActive) {
+                        System.out.println("\nProduct Meny:");
+                        System.out.println("1. Add product to cart");
+                        System.out.println("2. Remove product from cart");
+                        System.out.println("3. Back to main meny");
+                        System.out.println("Enter your choice: ");
+                        String productChoice = scan.nextLine();
+
+                        switch (productChoice) {
+                            case "1":
+                                System.out.println("Enter the ID of the product you want to add to your cart: ");
+                                int productId = Integer.parseInt(scan.nextLine());
+
+                                if (productId >= 0 && productId < productHandler.getProductList().size()) {
+                                    Product selectedProduct = productHandler.getProductList().get(productId);
+                                    customer.getCart().addProduct(selectedProduct);
+                                    System.out.println(selectedProduct.getName() + " has been added to your cart.");
+                                } else {
+                                    System.out.println("Invalid product ID.");
+                                }
+                                break;
+                            case "2":
+                                System.out.println("Enter the ID of the product you want to remove from your cart: ");
+                                int removeProductId = Integer.parseInt(scan.nextLine());
+
+                                if (removeProductId >= 0 && removeProductId < customer.getCart().getProducts().size()) {
+                                    Product removedProduct = customer.getCart().getProducts().get(removeProductId);
+                                    customer.getCart().removeProduct(removedProduct);
+                                    System.out.println(removedProduct.getName() + " has been removed from your cart.");
+                                } else {
+                                    System.out.println("Invalid product ID.");
+                                }
+                                break;
+                            case "3":
+                                productMenuActive = false;
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                                break;
+                        }
+                    }
+                    break;
+
 //                    - välj produkt, lägg till i varukorg
 //                    customer.getCart().addProduct();
 //                    - gå tillbaka
-                    break;
-                case "2":
 
-                    //TODO customerHandler.printCart();
+
+                case "2":
+                    System.out.println("Shopping Cart:\n");
+                    customer.getCart().printOrder();
+                    boolean cartMenuActive = true;
+                    while (cartMenuActive) {
+                        System.out.println("\nCart Meny:");
+                        System.out.println("1. Buy order");
+                        System.out.println("2. Cancel order");
+                        System.out.println("3. Back to main meny");
+                        System.out.println("Enter your choice: ");
+                        String cartChoice = scan.nextLine();
+
+                        switch (cartChoice) {
+                            case "1":
+                                if (customer.getCart().getProducts().isEmpty()) {
+                                    System.out.println("Your cart is empty.");
+                                } else {
+                                }
+                                break;
+                            case "2":
+                                //customer.getCart().clearCart();
+                                break;
+                            case "3":
+                                cartMenuActive = false;
+                                break;
+                            default:
+                                System.out.println("Invalid choice. Please try again.");
+                                break;
+                        }
+                    }
+                    break;
+
+                //TODO customerHandler.printCart();
 //                    - Remove product from cart"
 //                    - Buy order: customerHandler.getCart().makePurchase();
 //                    - Cancel order
-                    break;
                 case "3":
 //                    orderHandler.printOrderList();
                 case "4":
