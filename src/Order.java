@@ -19,7 +19,7 @@ public class Order {
     }
 
     //TODO Order constructor
-    public Order(String customerID, String receipt, int totalPrice, LocalDateTime timeCreated,
+    public Order(Customer customerID, String receipt, int totalPrice, LocalDateTime timeCreated,
                  LocalDateTime timeCompleted, boolean completed){
         this.timeCreated = timeCreated;
         this.customer = customer;

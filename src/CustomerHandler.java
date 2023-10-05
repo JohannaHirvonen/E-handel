@@ -44,4 +44,13 @@ public class CustomerHandler {
         }
         return false;
     }
+    public Customer getCustomer(String customerID){
+        for (Customer customer : customerList) {
+            if (customer.getUserID().equals(customerID)) {
+                return customer;
+            }
+        }
+        System.out.println("No customer found");
+        return null;
+    }
 }

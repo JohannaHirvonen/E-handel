@@ -15,12 +15,13 @@ public class OrderHandler {
     public void readFromFile() {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
+            CustomerHandler customerHandler = new CustomerHandler();
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
 
                 Order tempOrder = new Order(
-                        new CustomerHandler().getCustomer(orderInfo[0]),
+                        customerHandler.getCustomer(orderInfo[0]),
                        orderInfo [1],
                         orderInfo [2]));
 
