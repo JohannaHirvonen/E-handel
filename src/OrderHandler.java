@@ -20,7 +20,7 @@ public class OrderHandler {
                 String[] orderInfo = order.split(",");
 
                 Order tempOrder = new Order(
-                        orderInfo[0],
+                        new CustomerHandler().getCustomer(orderInfo[0]),
                        orderInfo [1],
                         orderInfo [2]));
 
