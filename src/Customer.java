@@ -30,4 +30,12 @@ public class Customer {
     public String toFileString() {
         return this.userID + "," + this.password + ",";
     }
+
+    public void setID(String newUserID) {
+        userID = newUserID;
+    }
+
+    public void setPassword(String newPassword) {
+        password = newPassword;
+    }
 }

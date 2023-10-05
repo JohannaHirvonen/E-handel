@@ -3,12 +3,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductHandler {
-    private ArrayList<Product> productList;
+    private ArrayList<Product> customerList;
     private static final String FILENAME = "Product.txt";
 
     public ProductHandler(){
         Utility.createTextFile(FILENAME);
-        productList = new ArrayList<>();
+        customerList = new ArrayList<>();
         readFromFile();
     }
 
@@ -24,21 +24,21 @@ public class ProductHandler {
                             productInfo[1],
                             Integer.parseInt(productInfo[2])
                     );
-                    productList.add(tempProduct);
+                    customerList.add(tempProduct);
                 }
             } catch (FileNotFoundException e) {
                 System.out.println(" FEL!!! " + e.getMessage());
             }
     }
 
-    public ArrayList<Product> getProductList() {
-        return productList;
+    public ArrayList<Product> getCustomerList() {
+        return customerList;
     }
 
 
     public void printProductList() {
 
-        if (this.productList.size() == 0) {
+        if (this.customerList.size() == 0) {
             System.out.println("No product in the inventory!");
         } else {
             int maxProductName = 50;
@@ -52,11 +52,11 @@ public class ProductHandler {
 
             System.out.println("-".repeat(headline.length()));
 
-            for (int i = 0; i < this.productList.size(); i++) {
+            for (int i = 0; i < this.customerList.size(); i++) {
                 System.out.println(i + ": " +
-                        addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
-                        addWhiteSpace(this.productList.get(i).getCatagory() + "", maxCatagory)+ "| " +
-                        addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
+                        addWhiteSpace(this.customerList.get(i).getName(), maxProductName) + "| " +
+                        addWhiteSpace(this.customerList.get(i).getCatagory() + "", maxCatagory)+ "| " +
+                        addWhiteSpace(this.customerList.get(i).getPrice() + "", maxPrice));
                 if (i%2 == 1){
                     System.out.println("-".repeat(headline.length()));
                 }
@@ -72,14 +72,14 @@ public class ProductHandler {
 
     public void addProductToList(Product newProduct) {
         if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
-            this.productList.add(newProduct);
-            System.out.println("Number of products in list: " + productList.size());
+            this.customerList.add(newProduct);
+            System.out.println("Number of products in list: " + customerList.size());
         }
     }
 
 
     public void removeProductFromList(int id) {
-        this.productList.remove(id);
+        this.customerList.remove(id);
         removeProductFromTextFile();
     }
     public boolean removeProductYesOrNo(){
@@ -89,11 +89,11 @@ public class ProductHandler {
         try {
             FileOutputStream fos = new FileOutputStream(FILENAME);
             PrintStream printStream = new PrintStream(fos);
-            for (int i = 0; i < productList.size(); i++) {
+            for (int i = 0; i < customerList.size(); i++) {
                 if(i == 0){
-                    printStream.print(productList.get(i).formatedStringForFile());
+                    printStream.print(customerList.get(i).formatedStringForFile());
                 } else {
-                    printStream.print("\n" + productList.get(i).formatedStringForFile());
+                    printStream.print("\n" + customerList.get(i).formatedStringForFile());
                 }
             }
 

@@ -151,7 +151,7 @@ public class ECommerceSystem {
         while (run) {
             System.out.println("Admin Meny: \n");
             System.out.println("1.Edit product list");
-            System.out.println("2.Edit customer information");
+            System.out.println("2.Edit customer information"); //fredrik
             System.out.println("3. Transaction history");
             System.out.println("4.Logout");
             System.out.print("Enter your choice: ");
@@ -163,11 +163,8 @@ public class ECommerceSystem {
                     printProductMenu();
                     break;
                 case "2":
-//                    see customer info (name, pasword, order history)
-//                    - add customer
-//                    - edit customer (remove + add)
-//                        - change username
-//                        - change password
+                    printCustomersMenu();
+//
                     break;
                 case "3":
 //                    transaction history - Transaction.getAllOrders();
@@ -213,6 +210,40 @@ public class ECommerceSystem {
             }
         } while (!choice.equals("4"));
     }
+    private void printCustomersMenu() {
+        Scanner scanner = new Scanner(System.in);
+        String choice;
+        do {
+            System.out.println("1. Edit customer information");
+            System.out.println("2. See Customer list");
+            System.out.println("3. Close");
+
+            choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Which customer (index) do you want to edit?");
+                    int userIndex = Integer.parseInt(scanner.nextLine());
+                    System.out.println("If you wish to edit UserID - type 1 \nIf you wish to edit Password - type 2");
+                    int adminChoice = Integer.parseInt(scanner.nextLine());
+                    if (adminChoice == 1) {
+                        System.out.println("Please type new UserID");
+                        String newUserID = scanner.nextLine();
+                        customerHandler.customerList.get(userIndex).setID(newUserID);
+                    } else if (adminChoice == 2) {
+                        System.out.println("Please type new Password");
+                        String newPassword = scanner.nextLine();
+                        customerHandler.customerList.get(userIndex).setPassword(newPassword);
+                    }
+                    break;
+                case "2":
+                    customerHandler.printCustomerList();
+                    break;
+                default:
+                    System.out.println("Invalid input! Try again.");
+            }
+        } while (!choice.equals("3"));
+    }
+
 }
 
 
