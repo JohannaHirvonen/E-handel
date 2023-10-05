@@ -93,7 +93,4 @@ public class Order {
         }
         return productString.toString();
     }
-    public List<Product> getProducts() {
-        return products;
-    }
 }
