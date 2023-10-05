@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
 public class Order {
 
@@ -92,5 +92,8 @@ public class Order {
             productString.append(" ").append(product.getName());
         }
         return productString.toString();
+    }
+    public List<Product> getProducts() {
+        return products;
     }
 }

@@ -118,26 +118,26 @@ public class ProductHandler {
 //
 //        boolean run = true;
 //        while (run) {
-//            System.out.println("Registrera en produkt" +
-//                    "\n1. Produkt - " + productName +
-//                    "\n2. Kategori - " + catagory +
-//                    "\n3. Pris - " + price +
-//                    "\n4. Spara" +
-//                    "\nQ. Gå tillbaka" +
-//                    "\n\n Val -");
+//            System.out.println("Register a product" +
+//                    "\n1. Product - " + productName +
+//                    "\n2. Category - " + catagory +
+//                    "\n3. Price - " + price +
+//                    "\n4. Save" +
+//                    "\nQ. Back to main meny" +
+//                    "\n\n Choice -");
 //            String choice = scan.nextLine();
 //
 //            switch (choice) {
 //                case "1":
-//                    System.out.println("Produkt: ");
+//                    System.out.println("Product: ");
 //                    productName = scan.nextLine();
 //                    break;
 //                case "2":
-//                    System.out.println("Kategori: ");
+//                    System.out.println("Category: ");
 //                    catagory = scan.nextInt();
 //                    break;
 //                case "3":
-//                    System.out.println("Pris: ");
+//                    System.out.println("Price: ");
 //                    price = scan.nextLine();
 //                    break;
 //                case "4":
@@ -150,7 +150,7 @@ public class ProductHandler {
 //                    run = false;
 //                    break;
 //                default:
-//                    System.out.println("Måste välja 1 - 4  eller Q.");
+//                    System.out.println("Must choose 1 - 4 or Q.");
 //            }
 //        }
 //    }
