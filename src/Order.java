@@ -8,29 +8,28 @@ public class Order {
     private double totalPrice;
     private LocalDateTime timeCreated;
     private LocalDateTime timeCompleted;
-    private Customer customer;
+    private String customerID;
     private ArrayList<Product> products;
     private String receipt;
     private boolean completed;
 
-    public Order(){
+    public Order(String customerID){
         timeCreated = LocalDateTime.now();
         products = new ArrayList<>();
+        this.customerID = customerID;
     }
 
 
-    public Order(Customer customerID, String receipt, int totalPrice, LocalDateTime timeCreated,
+    public Order(String customerID, ArrayList<Product> productList, double totalPrice, LocalDateTime timeCreated,
                  LocalDateTime timeCompleted, boolean completed){
         this.timeCreated = timeCreated;
-        this.customer = customer;
-        this.receipt = receipt;
+        this.customerID = customerID;
+        products = productList;
+        //TODO felhantering ifall en product försvunnit från textfilen/listan
     }
 
     public LocalDateTime getTimeCreated (){
         return timeCreated;
-    }
-    public Customer getCustomer(){
-        return customer;
     }
 
     public ArrayList<Product> getProducts(){
@@ -60,10 +59,25 @@ public class Order {
         completed = true;
     }
 
+    public void printCart(){
+        //TODO print english and one line
+        if (this.products.isEmpty()) {
+            System.out.println("No products in cart!");
+        } else {
+            System.out.println("Beställning:" +
+                    "\n Skapad: " + timeCreated);
+            printProducts();
+            System.out.println("..........................");
+            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "betald" : "obetald"));
+        }
+    }
+
     public void printOrder(){
+        //TODO print english and one line
         System.out.println("Beställning:" +
                 "\n Skapad: " + timeCreated);
-        printProducts();
+        System.out.println(receipt);
         System.out.println("..........................");
         System.out.println("Totalsumma: " + getTotalPrice() + " kr");
         System.out.println("Status: " + (completed ? "betald" : "obetald"));
@@ -78,12 +92,12 @@ public class Order {
 
     public String formatedStringForFile() {
         return
-                customer.getUserID() + "," +
-                productsToString() + "," +
-                totalPrice + "," +
-                timeCreated + "," +
-                timeCompleted + "," +
-                completed;
+                customerID + "," +
+                        productsToString() + "," +
+                        totalPrice + "," +
+                        timeCreated + "," +
+                        timeCompleted + "," +
+                        completed;
     }
 
     private String productsToString(){
@@ -91,6 +105,11 @@ public class Order {
         for (Product product : products) {
             productString.append(" ").append(product.getName());
         }
+        receipt = productString.toString();
         return productString.toString();
+    }
+
+    public String getCustomerID() {
+        return customerID;
     }
 }

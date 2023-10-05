@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class ECommerceSystem {
-
     public ProductHandler productHandler = new ProductHandler();
     public OrderHandler orderHandler = new OrderHandler();
     public CustomerHandler customerHandler = new CustomerHandler();
@@ -82,15 +81,10 @@ public class ECommerceSystem {
         System.out.print("Enter your password: ");
         String enteredPassword = scan.nextLine();
         if(customerHandler.authenticate(enteredUsername, enteredPassword)){
-//            loginSystem.getCustomer(enteredUsername);
             Customer customer = new Customer(enteredUsername, enteredPassword);
             customerMenu(customer);
         } else {
-            System.out.println("Wrong username or password.");
-            System.out.println("1. Logga in");
-            System.out.println("2. Registrera ny användare");
-            System.out.println("3. Avsluta");
-            String choice = scan.nextLine();
+            //TODO return to main menu
         }
 
     }
@@ -104,7 +98,7 @@ public class ECommerceSystem {
         if (enteredUsername.equals(AdminCredentials.ADMIN_NAME.getValue())
                 && enteredPassword.equals(AdminCredentials.ADMIN_PASSWORD.getValue())) {
             System.out.println("Admin login successful!");
-            adminMeny();
+            adminMenu();
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
@@ -130,14 +124,17 @@ public class ECommerceSystem {
                         System.out.println("\nProduct Meny:");
                         System.out.println("1. Add product to cart");
                         System.out.println("2. Remove product from cart");
+                        //TODO see cart
                         System.out.println("3. Back to main meny");
                         System.out.println("Enter your choice: ");
                         String productChoice = scan.nextLine();
 
                         switch (productChoice) {
                             case "1":
+                                //TODO print productList
                                 System.out.println("Enter the ID of the product you want to add to your cart: ");
                                 int productId = Integer.parseInt(scan.nextLine());
+                                //TODO how many would you like?
 
                                 if (productId >= 0 && productId < productHandler.getProductList().size()) {
                                     Product selectedProduct = productHandler.getProductList().get(productId);
@@ -148,6 +145,7 @@ public class ECommerceSystem {
                                 }
                                 break;
                             case "2":
+                                //TODO see cart
                                 System.out.println("Enter the ID of the product you want to remove from your cart: ");
                                 int removeProductId = Integer.parseInt(scan.nextLine());
 
@@ -176,14 +174,14 @@ public class ECommerceSystem {
 
                 case "2":
                     System.out.println("Shopping Cart:\n");
-                    customer.getCart().printOrder();
+                    customer.getCart().printCart();
                     boolean cartMenuActive = true;
                     while (cartMenuActive) {
-                        System.out.println("\nCart Meny:");
+                        System.out.println("\nCart Menu:");
                         System.out.println("1. Buy order");
                         System.out.println("2. Cancel order");
-                        System.out.println("3. Back to main meny");
-                        System.out.println("4. See shopping cart");
+                        System.out.println("3. See shopping cart");
+                        System.out.println("4. Back to main menu");
                         System.out.println("Enter your choice: ");
                         String cartChoice = scan.nextLine();
 
@@ -193,13 +191,16 @@ public class ECommerceSystem {
                                     System.out.println("Your cart is empty.");
                                 } else {
                                     customer.getCart().makePurchase();
-                                    orderHandler.addOrderToList(customer.getCart());
+                                    orderHandler.addOrderToList(customer);
                                 }
                                 break;
                             case "2":
-                                //customer.getCart().clearCart();
+                                customer.clearCart();
+                                System.out.println("Your cart is now empty!");
                                 break;
                             case "3":
+                                //TODO see cart
+                            case "4":
                                 cartMenuActive = false;
                                 break;
                             default:
@@ -208,13 +209,9 @@ public class ECommerceSystem {
                         }
                     }
                     break;
-
-                //TODO customerHandler.printCart();
-//                    - Remove product from cart"
-//                    - Buy order: customerHandler.getCart().makePurchase();
-//                    - Cancel order
                 case "3":
-//                    orderHandler.printOrderList();
+                    orderHandler.printFromFileByCustomer(customer.getUserID());
+                    break;
                 case "4":
                     run = false;
                     break;
@@ -222,14 +219,14 @@ public class ECommerceSystem {
         }
     }
 
-    private void adminMeny() {
+    private void adminMenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
-            System.out.println("Admin Meny: \n");
+            System.out.println("Admin Menu: \n");
             System.out.println("1.Edit product list");
             System.out.println("2.Edit customer information");
-            System.out.println("3. Transaction history");
+            System.out.println("3.Transaction history");
             System.out.println("4.Logout");
             System.out.print("Enter your choice: ");
             String choice = scan.nextLine();
@@ -241,10 +238,10 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     printCustomersMenu();
-//
                     break;
                 case "3":
-//                    transaction history - Transaction.getAllOrders();
+                    orderHandler.printOrderHistoryAdmin();
+                    break;
                 case "4":
                     run  = false;
                     break;

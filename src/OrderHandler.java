@@ -16,24 +16,37 @@ public class OrderHandler {
     public void readFromFile() {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
-            CustomerHandler customerHandler = new CustomerHandler();
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
 
                 Order tempOrder = new Order(
-                        customerHandler.getCustomer(orderInfo[0]),
-                        orderInfo [1],
-                        Integer.parseInt(orderInfo[2]),
+                        orderInfo[0],
+                        getOrdersByNames(orderInfo[1]),
+                        Double.parseDouble(orderInfo[2]),
                         LocalDateTime.parse(orderInfo[3]),
                         LocalDateTime.parse(orderInfo[4]),
-                        orderInfo[5]== "true");
+                        orderInfo[5].equals("true"));
 
                 orderList.add(tempOrder);
             }
         } catch (FileNotFoundException e) {
             System.out.println(" FEL!!! " + e.getMessage());
         }
+    }
+
+    private ArrayList<Product> getOrdersByNames(String productString) {
+        ProductHandler productHandler = new ProductHandler();
+        String[] productNames = productString.split(" ");
+        ArrayList<Product> productList = new ArrayList<>();
+        for(String name : productNames){
+            for(Product product : productHandler.getProductList()){
+                if(product.getName().equals(name)){
+                    productList.add(product);
+                }
+            }
+        }
+        return productList;
     }
 
     public ArrayList<Order> getOrderList() {
@@ -67,6 +80,47 @@ public class OrderHandler {
 //            }
 //        }
 //    }
+
+    public void printOrderHistoryAdmin() {
+        try {
+            Scanner scan = new Scanner(new File(FILENAME));
+            int receipts = 0;
+            while (scan.hasNextLine()) {
+                String order = scan.nextLine();
+                String[] orderInfo = order.split(",");
+                    System.out.println(orderInfo[0] + orderInfo[1] +
+                            orderInfo[2] + orderInfo[3] + orderInfo[4]);
+                    receipts ++;
+            }
+            if(receipts == 0){
+                System.out.println("No order history found");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(" FEL!!! " + e.getMessage());
+        }
+    }
+
+    public void printFromFileByCustomer(String customerID) {
+        try {
+            Scanner scan = new Scanner(new File(FILENAME));
+                int receipts = 0;
+            while (scan.hasNextLine()) {
+                String order = scan.nextLine();
+                String[] orderInfo = order.split(",");
+                if(orderInfo[0].equals(customerID)){
+                    System.out.println(orderInfo[1] + orderInfo[2] + orderInfo[3] + orderInfo[4]);
+                    receipts ++;
+                }
+            }
+            if(receipts == 0){
+                System.out.println("No order history found");
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(" FEL!!! " + e.getMessage());
+        }
+    }
+
+
     private String addWhiteSpace(String text, int maxAmount){
         if(text.length() > maxAmount){
             return text.substring(0, maxAmount - 3) + "...";
@@ -74,9 +128,9 @@ public class OrderHandler {
         return text + " ".repeat(maxAmount - text.length());
     }
 
-    public void addOrderToList(Order newOrder) {
-        if (Utility.addItemToTextFile(newOrder.formatedStringForFile(), FILENAME)) {
-            this.orderList.add(newOrder);
+    public void addOrderToList(Customer customer) {
+        if (Utility.addItemToTextFile(customer.getCart().formatedStringForFile(), FILENAME)) {
+            this.orderList.add(customer.getCart());
         }
     }
 

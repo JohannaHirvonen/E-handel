@@ -21,11 +21,15 @@ public class Customer {
     public Customer(String userID, String password) {
         this.userID = userID;
         this.password = password;
-        cart = new Order();
+        cart = new Order(this.userID);
     }
 
     public Order getCart(){
         return cart;
+    }
+
+    public void clearCart(){
+        cart = new Order(this.userID);
     }
     public String toFileString() {
         return this.userID + "," + this.password + ",";
