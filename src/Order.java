@@ -18,7 +18,7 @@ public class Order {
         products = new ArrayList<>();
     }
 
-    //TODO Order constructor
+
     public Order(Customer customerID, String receipt, int totalPrice, LocalDateTime timeCreated,
                  LocalDateTime timeCompleted, boolean completed){
         this.timeCreated = timeCreated;
