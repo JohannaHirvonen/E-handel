@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,12 +16,19 @@ public class OrderHandler {
     public void readFromFile() {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
+            CustomerHandler customerHandler = new CustomerHandler();
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
 
-                Order tempOrder = new Order();
-                //TODO order constructor
+                Order tempOrder = new Order(
+                        customerHandler.getCustomer(orderInfo[0]),
+                        orderInfo [1],
+                        Integer.parseInt(orderInfo[2]),
+                        LocalDateTime.parse(orderInfo[3]),
+                        LocalDateTime.parse(orderInfo[4]),
+                        orderInfo[5]== "true");
+
                 orderList.add(tempOrder);
             }
         } catch (FileNotFoundException e) {
