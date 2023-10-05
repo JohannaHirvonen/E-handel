@@ -183,6 +183,7 @@ public class ECommerceSystem {
                         System.out.println("1. Buy order");
                         System.out.println("2. Cancel order");
                         System.out.println("3. Back to main meny");
+                        System.out.println("4. See shopping cart");
                         System.out.println("Enter your choice: ");
                         String cartChoice = scan.nextLine();
 
@@ -191,6 +192,8 @@ public class ECommerceSystem {
                                 if (customer.getCart().getProducts().isEmpty()) {
                                     System.out.println("Your cart is empty.");
                                 } else {
+                                    customer.getCart().makePurchase();
+                                    orderHandler.addOrderToList(customer.getCart());
                                 }
                                 break;
                             case "2":
