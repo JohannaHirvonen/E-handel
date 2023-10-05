@@ -228,7 +228,7 @@ public class ECommerceSystem {
         while (run) {
             System.out.println("Admin Meny: \n");
             System.out.println("1.Edit product list");
-            System.out.println("2.Edit customer information"); //fredrik
+            System.out.println("2.Edit customer information");
             System.out.println("3. Transaction history");
             System.out.println("4.Logout");
             System.out.print("Enter your choice: ");
