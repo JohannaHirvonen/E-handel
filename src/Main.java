@@ -5,7 +5,5 @@ public class Main {
 
         System.out.println("Welcome");
         new ECommerceSystem().displayMainMenu();
-        //TODO customer-filen hämtas två gånger
-
     }
 }

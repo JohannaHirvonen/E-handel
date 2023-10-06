@@ -7,13 +7,13 @@ public class OrderHandler {
     private ArrayList<Order> orderList;
     private static final String FILENAME = "Order.txt";
 
-    public OrderHandler(){
+    public OrderHandler(ProductHandler productHandler){
         Utility.createTextFile(FILENAME);
         orderList = new ArrayList<>();
-        readFromFile();
+        readFromFile(productHandler);
     }
 
-    public void readFromFile() {
+    public void readFromFile(ProductHandler productHandler) {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
             while (scan.hasNextLine()) {
@@ -22,10 +22,10 @@ public class OrderHandler {
 
                 Order tempOrder = new Order(
                         orderInfo[0],
-                        getOrdersByNames(orderInfo[1]),
+                        getOrdersByNames(orderInfo[1], productHandler),
                         Double.parseDouble(orderInfo[2]),
-                        LocalDateTime.parse(orderInfo[3]),
-                        LocalDateTime.parse(orderInfo[4]),
+                        (orderInfo[3]),
+                        (orderInfo[4]),
                         orderInfo[5].equals("true"));
 
                 orderList.add(tempOrder);
@@ -35,8 +35,7 @@ public class OrderHandler {
         }
     }
 
-    private ArrayList<Product> getOrdersByNames(String productString) {
-        ProductHandler productHandler = new ProductHandler();
+    private ArrayList<Product> getOrdersByNames(String productString, ProductHandler productHandler) {
         String[] productNames = productString.split(" ");
         ArrayList<Product> productList = new ArrayList<>();
         for(String name : productNames){

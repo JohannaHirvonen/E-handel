@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,30 +7,28 @@ public class Order {
 
     public static final String FILE_NAME = "Order.txt";
     private double totalPrice;
-    private LocalDateTime timeCreated;
-    private LocalDateTime timeCompleted;
+    private String timeCreated;
+    private String timeCompleted;
     private String customerID;
     private ArrayList<Product> products;
     private String receipt;
     private boolean completed;
 
     public Order(String customerID){
-        timeCreated = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        timeCreated = time.format(formatter);
         products = new ArrayList<>();
         this.customerID = customerID;
     }
 
 
-    public Order(String customerID, ArrayList<Product> productList, double totalPrice, LocalDateTime timeCreated,
-                 LocalDateTime timeCompleted, boolean completed){
+    public Order(String customerID, ArrayList<Product> productList, double totalPrice, String timeCreated,
+                 String timeCompleted, boolean completed){
         this.timeCreated = timeCreated;
         this.customerID = customerID;
         products = productList;
         //TODO felhantering ifall en product försvunnit från textfilen/listan
-    }
-
-    public LocalDateTime getTimeCreated (){
-        return timeCreated;
     }
 
     public ArrayList<Product> getProducts(){
@@ -55,7 +54,9 @@ public class Order {
 
     public void makePurchase(){
         totalPrice = getTotalPrice();
-        timeCompleted = LocalDateTime.now();
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        timeCompleted = time.format(formatter);
         completed = true;
     }
 
@@ -73,14 +74,14 @@ public class Order {
         }
     }
 
-    public void printOrder(){
+    public void printReceipt(){
         //TODO print english and one line
-        System.out.println("Beställning:" +
-                "\n Skapad: " + timeCreated);
-        System.out.println(receipt);
-        System.out.println("..........................");
-        System.out.println("Totalsumma: " + getTotalPrice() + " kr");
-        System.out.println("Status: " + (completed ? "betald" : "obetald"));
+            System.out.println("Beställning:" +
+                    "\n Skapad: " + timeCreated);
+            printProducts();
+            System.out.println("..........................");
+            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "betald" : "obetald"));
     }
 
     private void printProducts() {
