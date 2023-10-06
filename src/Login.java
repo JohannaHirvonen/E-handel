@@ -19,6 +19,9 @@ public class Login {
         customerHandler.addCustomer(customer);
         System.out.println("Registration successful!");
     }
+    //TODO check if user name exist already *******
+    //TODO if user name dosen't exsit: system.out.println("User doesn't exist, please register as a new user or login as another user")******
+
 
     private boolean isValidUsername(String username) {
         if (!username.matches("^[A-Za-z0-9]+$")) {

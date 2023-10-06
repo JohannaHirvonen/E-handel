@@ -61,31 +61,31 @@ public class Order {
     }
 
     public void printCart(){
-        //TODO print english and one line
+        //TODO print english and one line- Joy
         if (this.products.isEmpty()) {
-            System.out.println("No products in cart!");
+            System.out.println("No products in cart, go back to customer menu to see product list");
         } else {
-            System.out.println("Beställning:" +
-                    "\n Skapad: " + timeCreated);
+            System.out.println("Your shopping cart contains:");
             printProducts();
-            System.out.println("..........................");
-            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "betald" : "obetald"));
+            System.out.println("                   ");
+            System.out.println("Total cost: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
+            System.out.println("Go back to customer menu too see shopping cart in order to make purchase");
         }
     }
 
     public void printReceipt(){
-        //TODO print english and one line
-            System.out.println("Beställning:" +
-                    "\n Skapad: " + timeCreated);
+        //TODO print english and one line -Joy
+            System.out.println("Receipt:" +
+                    "\nCreated: " + timeCreated);
             printProducts();
-            System.out.println("..........................");
-            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "betald" : "obetald"));
+            System.out.println("                                        ");
+            System.out.println("Total cost: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "Paid" : "Not paid"));
     }
 
     private void printProducts() {
-        System.out.println("Produkter: ");
+        System.out.println("Products: ");
         for(Product product : products){
             System.out.println(product.getName() + "..............." + product.getPrice());
         }

@@ -62,7 +62,7 @@ public class ECommerceSystem {
                     1.See product list
                     2.See shopping cart
                     3.See purchase history
-                    4.Logout""");
+                    4.Logout """);
             System.out.println("Enter your choice: ");
             String choice = scan.nextLine();
 
@@ -72,6 +72,7 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     shoppingCartMenu(customer);
+                    //TODO if shopping cart is empty to back to customer menu *****
                     break;
                 case "3":
                     //Nice to have: prettier output
@@ -91,19 +92,19 @@ public class ECommerceSystem {
         while (cartMenuActive) {
             System.out.println("""
             
-            Shopping Cart Menu
+            Shopping cart Menu
             
             1. Buy order
             2. Cancel order
             3. See shopping cart
-            4. Back to main menu
+            4. Back to customer menu
             Enter your choice:""");
             String cartChoice = scan.nextLine();
 
             switch (cartChoice) {
                 case "1":
                     if (customer.getCart().getProducts().isEmpty()) {
-                        System.out.println("Your cart is empty.");
+                        System.out.println("Your cart is empty");
                     } else {
                         customer.getCart().makePurchase();
                         orderHandler.addOrderToList(customer);
@@ -112,6 +113,7 @@ public class ECommerceSystem {
                         customer.clearCart();
                     }
                     break;
+                    //TODO DO not Show shopping cart menu again. Instead exit or go back to main menu ******
                 case "2":
                     customer.clearCart();
                     System.out.println("Your cart is now empty!");
@@ -139,7 +141,7 @@ public class ECommerceSystem {
             
             1. Add product to cart
             2. Remove product from cart
-            3. Back to main meny"
+            3. Back to customer menu
             Enter your choice:""");
             String productChoice = scan.nextLine();
 
