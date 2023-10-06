@@ -38,6 +38,7 @@ public class Order {
     }
 
     public void addProduct(Product product){
+        //Nice to have: change list type to set to be able to add numberOfProduct
         products.add(product);
     }
 
