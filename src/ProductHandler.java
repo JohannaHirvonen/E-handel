@@ -22,8 +22,8 @@ public class ProductHandler {
                     Product tempProduct = new Product(
                             productInfo[0],
                             productInfo[1],
-                            Integer.parseInt(productInfo[2])
-                    );
+                            Integer.parseInt(productInfo[2],
+                                    Integer.parseInt(productInfo[3]));
                     productList.add(tempProduct);
                 }
             } catch (FileNotFoundException e) {
@@ -43,10 +43,12 @@ public class ProductHandler {
         } else {
             int maxProductName = 50;
             int maxCatagory = 50;
+            int maxNumberOfproduct = 1000;
             int maxPrice = 1000;
 
             String headline = "Id" + addWhiteSpace("Product Name", maxProductName) + "| " +
                     addWhiteSpace("Catagory", maxCatagory) + "| " +
+                    addWhiteSpace("Amount", maxNumberOfproduct) + "| " +
                     addWhiteSpace( "Price", maxPrice) ;
             System.out.println(headline);
 
@@ -56,6 +58,7 @@ public class ProductHandler {
                 System.out.println(i + ": " +
                         addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
                         addWhiteSpace(this.productList.get(i).getCatagory() + "", maxCatagory)+ "| " +
+                        addWhiteSpace(this.productList.get(i).getNumberOfProduct() + "", maxNumberOfproduct)+ "| " +
                         addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
                 if (i%2 == 1){
                     System.out.println("-".repeat(headline.length()));

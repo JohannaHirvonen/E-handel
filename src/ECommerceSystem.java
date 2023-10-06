@@ -85,6 +85,7 @@ public class ECommerceSystem {
             customerMenu(customer);
         } else {
             //TODO return to main menu
+            displayMainMenu();
         }
 
     }
@@ -131,10 +132,13 @@ public class ECommerceSystem {
 
                         switch (productChoice) {
                             case "1":
-                                //TODO print productList
+                                productHandler.printProductList();
                                 System.out.println("Enter the ID of the product you want to add to your cart: ");
                                 int productId = Integer.parseInt(scan.nextLine());
                                 //TODO how many would you like?
+                                System.out.println("How many would you like to add to cart? ");
+                                int numberOfProduct = Integer.parseInt(scan.nextLine());
+
 
                                 if (productId >= 0 && productId < productHandler.getProductList().size()) {
                                     Product selectedProduct = productHandler.getProductList().get(productId);
@@ -144,6 +148,14 @@ public class ECommerceSystem {
                                     System.out.println("Invalid product ID.");
                                 }
                                 break;
+
+                            if (numberOfProduct >= 0 && numberOfProduct < productHandler.getProductList().size()) {
+                                Product selectedProduct = productHandler.getProductList().get(numberOfProduct);
+                                customer.getCart().addProduct(selectedProduct);
+                                System.out.println(selectedProduct.getNumberOfProduct() + " has been added to your cart.");
+                            } else {
+                                System.out.println("Invalid number of products.");
+                            }
                             case "2":
                                 //TODO see cart
                                 System.out.println("Enter the ID of the product you want to remove from your cart: ");
@@ -268,9 +280,11 @@ public class ECommerceSystem {
                     String name = scanner.nextLine();
                     System.out.println("Type the category of the product");
                     String category = scanner.nextLine();
+                    System.out.println("Set amount");
+                    int price = Integer.parseInt(scanner.nextLine());
                     System.out.println("Set the price");
                     int price = Integer.parseInt(scanner.nextLine());
-                    productHandler.addProductToList(new Product(name, category, price));
+                    productHandler.addProductToList(new Product(name, category,numberOfProduct, price));
                     break;
                 case "2":
                     System.out.println("Which product do you want to remove?");
