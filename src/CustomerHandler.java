@@ -26,7 +26,7 @@ public class CustomerHandler {
                     customerList.add(tempCustomer);
                 }
             } catch (FileNotFoundException e) {
-                System.out.println(" FEL!!! " + e.getMessage());
+                System.out.println(" Error! " + e.getMessage());
             }
     }
 
@@ -52,7 +52,6 @@ public class CustomerHandler {
         } else {
             int maxUserID = 50;
             int maxPassword = 50;
-
 
             String headline = "Id" + addWhiteSpace("User ID", maxUserID) + "| " +
                     addWhiteSpace("Password", maxPassword) + "| ";
@@ -87,7 +86,7 @@ public class CustomerHandler {
                 return customer;
             }
         }
-        System.out.println("No customer found");
+        System.out.println("No customer found!");
         return null;
     }
 }

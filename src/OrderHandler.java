@@ -92,7 +92,7 @@ public class OrderHandler {
                     receipts ++;
             }
             if(receipts == 0){
-                System.out.println("No order history found");
+                System.out.println("No order history found!");
             }
         } catch (FileNotFoundException e) {
             System.out.println(" FEL!!! " + e.getMessage());
@@ -112,10 +112,10 @@ public class OrderHandler {
                 }
             }
             if(receipts == 0){
-                System.out.println("No order history found");
+                System.out.println("No order history found!");
             }
         } catch (FileNotFoundException e) {
-            System.out.println(" FEL!!! " + e.getMessage());
+            System.out.println(" Error " + e.getMessage());
         }
     }
 
@@ -154,7 +154,7 @@ public class OrderHandler {
             printStream.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Det blev galet! " + e.getMessage());
+            System.out.println("Error! " + e.getMessage());
         }
 
         return false;

@@ -61,31 +61,31 @@ public class Order {
     }
 
     public void printCart(){
-        //TODO print english and one line
+        //TODO print and one line
         if (this.products.isEmpty()) {
             System.out.println("No products in cart!");
         } else {
-            System.out.println("Beställning:" +
-                    "\n Skapad: " + timeCreated);
+            System.out.println("Order:" +
+                    "\n saved: " + timeCreated);
             printProducts();
             System.out.println("..........................");
-            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "betald" : "obetald"));
+            System.out.println("Total sum: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "paid" : "unpaid"));
         }
     }
 
     public void printReceipt(){
-        //TODO print english and one line
-            System.out.println("Beställning:" +
-                    "\n Skapad: " + timeCreated);
+        //TODO print and one line
+            System.out.println("Order:" +
+                    "\n Saved: " + timeCreated);
             printProducts();
             System.out.println("..........................");
-            System.out.println("Totalsumma: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "betald" : "obetald"));
+            System.out.println("Total sum: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "paid" : "unpaid"));
     }
 
     private void printProducts() {
-        System.out.println("Produkter: ");
+        System.out.println("Products: ");
         for(Product product : products){
             System.out.println(product.getName() + "..............." + product.getPrice());
         }

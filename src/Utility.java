@@ -10,14 +10,14 @@ public class Utility {
         File file = new File(nameOfFile);
         try{
             if(file.createNewFile()){
-                System.out.println("Filen har skapats: " + file.getName());
+                System.out.println("The file has been created: " + file.getName());
             } else {
-                System.out.println("Filen " + file.getName() + " finns redan!");
+                System.out.println("The file " + file.getName() + " finns redan!");
                 System.out.println();
                 return false;
             }
         } catch (IOException e){
-            System.out.println("Ett fel uppstod när vi skulle skapa filen. " + e.getMessage());
+            System.out.println("An error occurred! " + e.getMessage());
             //TODO crash
         }
         System.out.println();
@@ -39,7 +39,7 @@ public class Utility {
             printStream.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Det blev galet! " + e.getMessage());
+            System.out.println("An error occurred! " + e.getMessage());
         }
 
         return false;
