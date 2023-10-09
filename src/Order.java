@@ -72,13 +72,6 @@ public class Order {
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
             System.out.println("Go back to customer menu too see shopping cart in order to make purchase");
-
-            System.out.println("Order:" +
-                    "\n saved: " + timeCreated);
-            printProducts();
-            System.out.println("..........................");
-            System.out.println("Total sum: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "paid" : "unpaid"));
         }
     }
 
