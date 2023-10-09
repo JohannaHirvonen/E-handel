@@ -75,7 +75,6 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     shoppingCartMenu(customer);
-                    //TODO if shopping cart is empty to back to customer menu *****
                     break;
                 case "3":
                     //Nice to have: prettier output
@@ -93,7 +92,9 @@ public class ECommerceSystem {
 
     private void shoppingCartMenu(Customer customer) {
         Scanner scan = new Scanner(System.in);
-        customer.getCart().printCart();
+        if (!customer.getCart().printCart()){
+            return;
+        }
         boolean cartMenuActive = true;
         while (cartMenuActive) {
             System.out.println("""
@@ -120,7 +121,6 @@ public class ECommerceSystem {
                         customer.clearCart();
                     }
                     break;
-                    //TODO DO not Show shopping cart menu again. Instead exit or go back to main menu ******
                 case "2":
                     customer.clearCart();
                     System.out.println("Your cart is now empty!");

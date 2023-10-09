@@ -60,10 +60,11 @@ public class Order {
         completed = true;
     }
 
-    public void printCart(){
+    public boolean printCart(){
 
         if (this.products.isEmpty()) {
-            System.out.println("No products in cart, go back to customer menu to see product list");
+            System.out.println("No products in cart. Go to product list to add products.");
+            return false;
         } else {
 
             System.out.println("Your shopping cart contains:");
@@ -72,6 +73,7 @@ public class Order {
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
             System.out.println("Go back to customer menu too see shopping cart in order to make purchase");
+            return true;
         }
     }
 
