@@ -65,6 +65,7 @@ public class ECommerceSystem {
                     2.See Shopping Cart
                     3.See Purchase History
                     4.Logout""");
+
             System.out.println("Enter your choice: ");
             String choice = scan.nextLine();
 
@@ -74,6 +75,7 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     shoppingCartMenu(customer);
+                    //TODO if shopping cart is empty to back to customer menu *****
                     break;
                 case "3":
                     //Nice to have: prettier output
@@ -101,14 +103,15 @@ public class ECommerceSystem {
                     1. Buy Order
                     2. Cancel Order
                     3. See Shopping Cart
-                    4. Back to Main Menu
+                    4. Back to Customer Menu
                     Enter your choice:""");
+
             String cartChoice = scan.nextLine();
 
             switch (cartChoice) {
                 case "1":
                     if (customer.getCart().getProducts().isEmpty()) {
-                        System.out.println("Your cart is empty.");
+                        System.out.println("Your cart is empty");
                     } else {
                         customer.getCart().makePurchase();
                         orderHandler.addOrderToList(customer);
@@ -117,6 +120,7 @@ public class ECommerceSystem {
                         customer.clearCart();
                     }
                     break;
+                    //TODO DO not Show shopping cart menu again. Instead exit or go back to main menu ******
                 case "2":
                     customer.clearCart();
                     System.out.println("Your cart is now empty!");
@@ -144,8 +148,9 @@ public class ECommerceSystem {
                                 
                     1. Add Product to Cart
                     2. Remove Product from Cart
-                    3. Back to Main Menu"
+                    3. Back to Customer Menu"
                     Enter your choice:""");
+
             String productChoice = scan.nextLine();
 
             switch (productChoice) {
