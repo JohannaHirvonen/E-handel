@@ -336,63 +336,9 @@ public class ECommerceSystem {
             choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Which customer (index) do you want to edit?");
-                    int userIndex;
-
-                    while (true) {
-                        userIndex = Integer.parseInt(scanner.nextLine());
-
-                        if (userIndex < 0 || userIndex >= customerHandler.customerList.size()) {
-                            System.out.println("Invalid user index! Please enter a valid index.");
-                        } else {
-                            break;
-                        }
-                    }
-                    System.out.println("If you wish to edit UserID - type 1 \nIf you wish to edit Password - type 2");
-                    int adminChoice;
-
-                    while (true) {
-                        adminChoice = Integer.parseInt(scanner.nextLine());
-
-                        if (adminChoice != 1 && adminChoice != 2) {
-                            System.out.println("Invalid choice! Please enter 1 for UserID or 2 for Password.");
-                        } else {
-                            break;
-                        }
-                    }
-
-                    if (adminChoice == 1) {
-                        System.out.println("Please type new UserID");
-                        String newUserID;
-
-                        while (true) {
-                            newUserID = scanner.nextLine();
-
-                            if (newUserID.length() < 3 || !newUserID.matches("^[A-Za-z0-9]+$")) {
-                                System.out.println("Invalid UserID! At least 3 characters using letters and numbers only.");
-                            } else {
-                                break;
-                            }
-                        }
-                        customerHandler.customerList.get(userIndex).setID(newUserID);
-                        System.out.println("Information has been changed.");
-                    } else if (adminChoice == 2) {
-                        System.out.println("Please type new password: ");
-                        String newPassword;
-
-                        while (true) {
-                            newPassword = scanner.nextLine();
-
-                            if (newPassword.length() < 6) {
-                                System.out.println("Invalid Password! Please enter at least 6 characters.");
-                            } else {
-                                break;
-                            }
-                        }
-
-                        customerHandler.customerList.get(userIndex).setPassword(newPassword);
-                        System.out.println("Information has been changed.");
-                    }
+                    customerHandler.printCustomerList();
+                    customerHandler.editCustomer(scanner);
+                    //TODO test customerList update
                     break;
                 case "2":
                     customerHandler.printCustomerList();
