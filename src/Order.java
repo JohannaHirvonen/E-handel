@@ -72,7 +72,7 @@ public class Order {
             System.out.println("                   ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
-            System.out.println("Go back to customer menu too see shopping cart in order to make purchase");
+            System.out.println("Go back to customer menu to see shopping cart in order to make purchase");
             return true;
         }
     }

@@ -22,7 +22,7 @@ public class ProductHandler {
                     Product tempProduct = new Product(
                             productInfo[0],
                             productInfo[1],
-                            Integer.parseInt(productInfo[2])
+                            Double.parseDouble(productInfo[2])
                     );
                     productList.add(tempProduct);
                 }

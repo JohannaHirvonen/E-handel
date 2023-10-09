@@ -77,7 +77,7 @@ public class ECommerceSystem {
                     shoppingCartMenu(customer);
                     break;
                 case "3":
-                    //Nice to have: prettier output
+                    System.out.println("Purchase history:");
                     orderHandler.printFromFileByCustomer(customer.getUserID());
                     break;
                 case "4":
@@ -120,13 +120,16 @@ public class ECommerceSystem {
                         orderHandler.getOrderList().get(orderHandler.getOrderList().size() - 1).printReceipt();
                         customer.clearCart();
                     }
+                    cartMenuActive = false;
                     break;
                 case "2":
                     customer.clearCart();
-                    System.out.println("Your cart is now empty!");
+                    System.out.println("Your cart is now cleared!");
+                    cartMenuActive = false;
                     break;
                 case "3":
                     customer.getCart().printCart();
+                    break;
                 case "4":
                     cartMenuActive = false;
                     break;
@@ -256,7 +259,7 @@ public class ECommerceSystem {
                     System.out.println("Type the category of the product (at least 2 letters only):");
                     String category = readLettersWithMinLength(scanner, 2);
                     System.out.println("Set the price (numbers only):");
-                    int price = readNumbersOnly(scanner);
+                    double price = readNumbersOnly(scanner);
                     productHandler.addProductToList(new Product(name, category, price));
                     productHandler.printProductList();
                     break;
@@ -289,11 +292,11 @@ public class ECommerceSystem {
         return input;
     }
 
-    private int readNumbersOnly(Scanner scanner) {
-        int number;
+    private double readNumbersOnly(Scanner scanner) {
+        double number;
         while (true) {
             try {
-                number = Integer.parseInt(scanner.nextLine());
+                number = Double.parseDouble(scanner.nextLine());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter numbers only.");

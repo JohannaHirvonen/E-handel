@@ -18,7 +18,8 @@ public class Utility {
             }
         } catch (IOException e){
             System.out.println("An error occurred! " + e.getMessage());
-            //TODO crash
+            //Unchecked exception: do not catch - supposed to crash the program if this happens
+            throw new RuntimeException(e);
         }
         System.out.println();
         return true;
