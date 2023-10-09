@@ -164,15 +164,16 @@ public class ECommerceSystem {
                             Product selectedProduct = productHandler.getProductList().get(productId);
                             customer.getCart().addProduct(selectedProduct);
                             System.out.println(selectedProduct.getName() + " has been added to your cart.");
+                            customer.getCart().printCart();
                         } else {
-                            System.out.println("Invalid product ID!");
+                            System.out.println("Invalid product ID! Please enter an ID from the list.");
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid input. Please enter a valid number.");
                     }
-                    customer.getCart().printCart();
                     break;
                 case "2":
+                    customer.getCart().printCart();
                     System.out.println("Enter the ID of the product you want to remove from your cart: ");
                     try {
                         int removeProductId = Integer.parseInt(scan.nextLine());
@@ -181,13 +182,13 @@ public class ECommerceSystem {
                             Product removedProduct = customer.getCart().getProducts().get(removeProductId);
                             customer.getCart().removeProduct(removedProduct);
                             System.out.println(removedProduct.getName() + " has been removed from your cart.");
+                            customer.getCart().printCart();
                         } else {
-                            System.out.println("Invalid product ID!");
+                            System.out.println("Invalid product ID! Please enter an ID from your cart.");
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid choice! Please enter a valid number.");
                     }
-                    customer.getCart().printCart();
                     break;
                 case "3":
                     productMenuActive = false;
