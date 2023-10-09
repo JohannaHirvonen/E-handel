@@ -44,14 +44,28 @@ public class Login {
     }
     public Customer loginCustomer(CustomerHandler customerHandler) {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Enter your username: ");
-        String enteredUsername = scan.nextLine();
-        System.out.print("Enter your password: ");
-        String enteredPassword = scan.nextLine();
-        if(customerHandler.authenticate(enteredUsername, enteredPassword)){
+        String enteredUsername;
+        String enteredPassword;
+
+        do {
+            System.out.print("Enter your username: ");
+            enteredUsername = scan.nextLine();
+
+        } while (!isValidUsername(enteredUsername));
+
+        do {
+            System.out.print("Enter your password: ");
+            enteredPassword = scan.nextLine();
+
+        } while (!isValidPassword(enteredPassword));
+
+        if (customerHandler.authenticate(enteredUsername, enteredPassword)) {
+            System.out.println("Login successful. Welcome!");
             return new Customer(enteredUsername, enteredPassword);
+        } else {
+            System.out.println("Username or password is incorrect. Please try again!");
+            return null;
         }
-        return null;
     }
 
     public boolean adminLogin(CustomerHandler customerHandler) {

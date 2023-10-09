@@ -27,7 +27,7 @@ public class ProductHandler {
                     productList.add(tempProduct);
                 }
             } catch (FileNotFoundException e) {
-                System.out.println(" FEL!!! " + e.getMessage());
+                System.out.println(" An error occurred. " + e.getMessage());
             }
     }
 
@@ -45,7 +45,7 @@ public class ProductHandler {
             int maxCatagory = 50;
             int maxPrice = 1000;
 
-            String headline = "Id" + addWhiteSpace("Product Name", maxProductName) + "| " +
+            String headline = "Id |" + addWhiteSpace("Product Name", maxProductName) + "| " +
                     addWhiteSpace("Catagory", maxCatagory) + "| " +
                     addWhiteSpace( "Price", maxPrice) ;
             System.out.println(headline);
@@ -73,8 +73,11 @@ public class ProductHandler {
     public void addProductToList(Product newProduct) {
         if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
             this.productList.add(newProduct);
-            System.out.println("Number of products in list: " + productList.size());
+            System.out.println("Product added to the list.");
         }
+    }
+    public boolean isValidProduct(int productId) {
+        return productId >= 0 && productId < productList.size();
     }
 
 
@@ -101,7 +104,7 @@ public class ProductHandler {
             printStream.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Det blev galet! " + e.getMessage());
+            System.out.println("An error occurred! " + e.getMessage());
         }
 
         return false;

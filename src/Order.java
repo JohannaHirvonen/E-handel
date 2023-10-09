@@ -61,16 +61,24 @@ public class Order {
     }
 
     public void printCart(){
-        //TODO print english and one line- Joy
+
         if (this.products.isEmpty()) {
             System.out.println("No products in cart, go back to customer menu to see product list");
         } else {
+
             System.out.println("Your shopping cart contains:");
             printProducts();
             System.out.println("                   ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
             System.out.println("Go back to customer menu too see shopping cart in order to make purchase");
+
+            System.out.println("Order:" +
+                    "\n saved: " + timeCreated);
+            printProducts();
+            System.out.println("..........................");
+            System.out.println("Total sum: " + getTotalPrice() + " kr");
+            System.out.println("Status: " + (completed ? "paid" : "unpaid"));
         }
     }
 

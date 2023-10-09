@@ -10,13 +10,10 @@ public class Customer {
     public String getPassword() {
         return password;
     }
-
     private String userID;
     private String password;
 
     private Order cart;
-
-
 
     public Customer(String userID, String password) {
         this.userID = userID;
