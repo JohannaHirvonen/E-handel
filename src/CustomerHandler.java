@@ -30,10 +30,15 @@ public class CustomerHandler {
             }
     }
 
-    public void addCustomer(Customer customer) {
-        //TODO check if customer alreday exists
-        customerList.add(customer);
-        Utility.addItemToTextFile(customer.toFileString(), FILENAME);
+    public boolean addCustomer(Customer customer) {
+        if(!customerExists(customer.getUserID())) {
+            customerList.add(customer);
+            Utility.addItemToTextFile(customer.toFileString(), FILENAME);
+            return true;
+        } else {
+            System.out.println("This username already exists. Please choose another username.");
+            return false;
+        }
     }
 
     public boolean authenticate(String username, String password) {
@@ -77,17 +82,21 @@ public class CustomerHandler {
         return text + " ".repeat(maxAmount - text.length());
     }
 
-    public Customer getCustomer(int id) {
-        return customerList.get(id);
-    }
-    public Customer getCustomer(String customerID){
-        for (Customer customer : customerList) {
-            if (customer.getUserID().equals(customerID)) {
+    public Customer getCustomerByName(String username) {
+        for(Customer customer : customerList){
+            if(customer.getUserID().equals(username)){
                 return customer;
             }
         }
-        System.out.println("No customer found!");
         return null;
+    }
+    private boolean customerExists(String customerID){
+        for (Customer customer : customerList) {
+            if (customer.getUserID().equals(customerID)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void editCustomer(Scanner scanner) {
@@ -131,7 +140,7 @@ public class CustomerHandler {
             }
             customerList.get(userIndex).setID(newUserID);
             System.out.println("Information has been changed.");
-        } else if (adminChoice == 2) {
+        } else {
             System.out.println("Please type new password: ");
             String newPassword;
 
@@ -144,7 +153,6 @@ public class CustomerHandler {
                     break;
                 }
             }
-
             customerList.get(userIndex).setPassword(newPassword);
             System.out.println("Information has been changed.");
         }

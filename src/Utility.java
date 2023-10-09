@@ -10,19 +10,14 @@ public class Utility {
         File file = new File(nameOfFile);
         try{
             if(file.createNewFile()){
-                System.out.println("The file has been created: " + file.getName());
-            } else {
-                System.out.println("The file " + file.getName() + " finns redan!");
-                System.out.println();
-                return false;
+                return true;
             }
         } catch (IOException e){
             System.out.println("An error occurred! " + e.getMessage());
             //Unchecked exception: do not catch - supposed to crash the program if this happens
             throw new RuntimeException(e);
         }
-        System.out.println();
-        return true;
+        return false;
     }
 
         public static boolean addItemToTextFile(String fileString, String fileName) {

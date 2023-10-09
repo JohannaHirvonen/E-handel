@@ -16,12 +16,10 @@ public class Login {
         } while (!isValidPassword(password));
 
         Customer customer = new Customer(username, password);
-        customerHandler.addCustomer(customer);
-        System.out.println("Registration successful!");
+        if(customerHandler.addCustomer(customer)) {
+            System.out.println("Registration successful!");
+        }
     }
-    //TODO check if user name exist already *******
-    //TODO if user name dosen't exsit: system.out.println("User doesn't exist, please register as a new user or login as another user")******
-
 
     private boolean isValidUsername(String username) {
         if (!username.matches("^[A-Za-z0-9]+$")) {
@@ -63,7 +61,7 @@ public class Login {
             System.out.println("Login successful. Welcome!");
             return new Customer(enteredUsername, enteredPassword);
         } else {
-            System.out.println("Username or password is incorrect. Please try again!");
+            System.out.println("Username or password is incorrect. Please try again or register as a new customer!");
             return null;
         }
     }

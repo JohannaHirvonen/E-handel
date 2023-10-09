@@ -22,7 +22,7 @@ public class OrderHandler {
 
                 Order tempOrder = new Order(
                         orderInfo[0],
-                        getOrdersByNames(orderInfo[1], productHandler),
+                        orderInfo[1],
                         Double.parseDouble(orderInfo[2]),
                         (orderInfo[3]),
                         (orderInfo[4]),
@@ -35,50 +35,9 @@ public class OrderHandler {
         }
     }
 
-    private ArrayList<Product> getOrdersByNames(String productString, ProductHandler productHandler) {
-        String[] productNames = productString.split(" ");
-        ArrayList<Product> productList = new ArrayList<>();
-        for(String name : productNames){
-            for(Product product : productHandler.getProductList()){
-                if(product.getName().equals(name)){
-                    productList.add(product);
-                }
-            }
-        }
-        return productList;
-    }
-
     public ArrayList<Order> getOrderList() {
         return orderList;
     }
-
-
-//    public void printOrderList() {
-//
-//        if (this.orderList.size() == 0) {
-//            System.out.println("No order found!");
-//        } else {
-//            int maxProductName = 50;
-//            int maxCatagory = 50;
-//            int maxPrice = 1000;
-//
-//            String headline = addWhiteSpace("Product Name", maxProductName) + "| " +
-//                    addWhiteSpace("Catagory", maxCatagory) + "| " +
-//                    addWhiteSpace( "Price", maxPrice) ;
-//            System.out.println(headline);
-//
-//            System.out.println("-".repeat(headline.length()));
-//
-//            for (int i = 0; i < this.orderList.size(); i++) {
-//                System.out.println(addWhiteSpace(this.orderList.get(i).getName(), maxProductName) + "| " +
-//                        addWhiteSpace(this.orderList.get(i).getCatagory() + "", maxCatagory)+ "| " +
-//                        addWhiteSpace(this.orderList.get(i).getPrice() + "", maxPrice));
-//                if (i%2 == 1){
-//                    System.out.println("-".repeat(headline.length()));
-//                }
-//            }
-//        }
-//    }
 
     public void printOrderHistoryAdmin() {
         try {

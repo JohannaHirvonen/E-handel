@@ -209,7 +209,7 @@ public class ECommerceSystem {
         while (run) {
             System.out.println("""
                                 
-                    Admin Menu
+                    Admin Main Menu
                                 
                     1.Edit Product List
                     2.Edit Customer Information
@@ -224,7 +224,9 @@ public class ECommerceSystem {
                     productAdminMenu();
                     break;
                 case "2":
-                    customerAdminMenu();
+                    customerHandler.printCustomerList();
+                    customerHandler.editCustomer(scan);
+                    customerHandler.printCustomerList();
                     break;
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
@@ -320,32 +322,5 @@ public class ECommerceSystem {
             }
         }
         return id;
-    }
-
-    private void customerAdminMenu() {
-        Scanner scanner = new Scanner(System.in);
-        String choice;
-        do {
-            System.out.println("""
-                    Admin Customer Menu
-                                
-                    1. Edit Customer Information
-                    2. See Customer List
-                    3. Close""");
-
-            choice = scanner.nextLine();
-            switch (choice) {
-                case "1":
-                    customerHandler.printCustomerList();
-                    customerHandler.editCustomer(scanner);
-                    //TODO test customerList update
-                    break;
-                case "2":
-                    customerHandler.printCustomerList();
-                    break;
-                default:
-                    System.out.println("Invalid input! Try again.");
-            }
-        } while (!choice.equals("3"));
     }
 }

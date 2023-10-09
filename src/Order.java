@@ -11,7 +11,7 @@ public class Order {
     private String timeCompleted;
     private String customerID;
     private ArrayList<Product> products;
-    private String receipt;
+    private String productString;
     private boolean completed;
 
     public Order(String customerID){
@@ -23,12 +23,11 @@ public class Order {
     }
 
 
-    public Order(String customerID, ArrayList<Product> productList, double totalPrice, String timeCreated,
+    public Order(String customerID, String productString, double totalPrice, String timeCreated,
                  String timeCompleted, boolean completed){
         this.timeCreated = timeCreated;
         this.customerID = customerID;
-        products = productList;
-        //TODO felhantering ifall en product försvunnit från textfilen/listan
+        this.productString = productString;
     }
 
     public ArrayList<Product> getProducts(){
@@ -81,7 +80,7 @@ public class Order {
         //TODO print english and one line -Joy
             System.out.println("Receipt:" +
                     "\nCreated: " + timeCreated);
-            printProducts();
+        System.out.println(productString);
             System.out.println("                                        ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (completed ? "Paid" : "Not paid"));
@@ -105,12 +104,12 @@ public class Order {
     }
 
     private String productsToString(){
-        StringBuilder productString = new StringBuilder();
+        StringBuilder productStringBuilder = new StringBuilder();
         for (Product product : products) {
-            productString.append(" ").append(product.getName());
+            productStringBuilder.append(" ").append(product.getName());
         }
-        receipt = productString.toString();
-        return productString.toString();
+        this.productString = productStringBuilder.toString();
+        return productString;
     }
 
     public String getCustomerID() {
