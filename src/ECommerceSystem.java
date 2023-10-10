@@ -186,8 +186,8 @@ public class ECommerceSystem {
                     try {
                         int removeProductId = Integer.parseInt(scan.nextLine());
 
-                        if (removeProductId >= 0 && removeProductId < customer.getCart().getProducts().size()) {
-                            Product removedProduct = customer.getCart().getProducts().get(removeProductId);
+                        if (removeProductId >= 1 && removeProductId <= customer.getCart().getProducts().size()) {
+                            Product removedProduct = customer.getCart().getProducts().get(removeProductId - 1);
                             customer.getCart().removeProduct(removedProduct);
                             System.out.println(removedProduct.getName() + " has been removed from your cart.");
                             customer.getCart().printCart();

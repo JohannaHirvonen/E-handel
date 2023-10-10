@@ -85,8 +85,9 @@ public class Order {
 
     private void printProducts() {
         System.out.println("Products: ");
-        for(Product product : products){
-            System.out.println(Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice() + " kr.");
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            System.out.println((i+1) + ". " + Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice() + " kr.");
         }
     }
 
