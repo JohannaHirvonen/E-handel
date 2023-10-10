@@ -43,11 +43,15 @@ public class OrderHandler {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
             int receipts = 0;
+            int maxSymbol = 20;
+            int maxPrice = 5;
+            String headline = "Username " + addWhiteSpace("Username", maxSymbol) + "| " +
+                    addWhiteSpace("Products", maxSymbol) + "| " + addWhiteSpace("Price", maxPrice) + "| " + addWhiteSpace("Order created", maxSymbol) + "| " + addWhiteSpace("Time of purchase", maxSymbol) + "| ";
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
-                    System.out.println(orderInfo[0] + orderInfo[1] +
-                            orderInfo[2] + orderInfo[3] + orderInfo[4]);
+                System.out.println(addWhiteSpace(orderInfo[0], maxSymbol) + addWhiteSpace(orderInfo[1], maxSymbol) + addWhiteSpace(orderInfo[2], maxPrice) +
+                        addWhiteSpace(orderInfo[3], maxSymbol) + addWhiteSpace(orderInfo[4], maxSymbol));
                     receipts ++;
             }
             if(receipts == 0){
