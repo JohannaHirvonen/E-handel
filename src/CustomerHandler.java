@@ -102,7 +102,6 @@ public class CustomerHandler {
 
         while (true) {
             userIndex = Integer.parseInt(scanner.nextLine());
-
             if (userIndex < 0 || userIndex >= customerList.size()) {
                 System.out.println("Invalid user index! Please enter a valid index.");
             } else {

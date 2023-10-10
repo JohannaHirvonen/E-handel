@@ -236,7 +236,7 @@ public class ECommerceSystem {
                         customerHandler.editCustomer(scan);
                     }else{
                     adminMenu();
-                }
+                    }
                     customerHandler.printCustomerList();
                     break;
                 case "3":
@@ -245,6 +245,7 @@ public class ECommerceSystem {
                 case "4":
                     run = false;
                     break;
+
                 default:
                     System.out.println("Invalid choice! Please try again.");
             }
