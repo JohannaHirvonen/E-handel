@@ -231,6 +231,7 @@ public class ECommerceSystem {
                 case "2":
                     customerHandler.printCustomerList();
                     System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
+                    //TODO atlernative "NO"
                     String edit = scan.nextLine().toLowerCase();
                     if (edit.equals("yes")) {
                         customerHandler.editCustomer(scan);
@@ -239,6 +240,7 @@ public class ECommerceSystem {
                     }
                     customerHandler.printCustomerList();
                     break;
+                    //TODO crash handling when invalid input
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
                     break;
