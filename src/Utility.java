@@ -40,4 +40,11 @@ public class Utility {
 
         return false;
     }
+    public static String addWhiteSpace(String text, int maxAmount){
+        if(text.length() > maxAmount){
+            return text.substring(0, maxAmount - 3) + "...";
+        }
+        return text + " ".repeat(maxAmount - text.length());
+    }
+
 }

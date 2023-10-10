@@ -45,16 +45,19 @@ public class OrderHandler {
             int receipts = 0;
             int maxSymbol = 20;
             int maxPrice = 8;
-            String headline = addWhiteSpace("Username", maxSymbol) + "| " +
-                    addWhiteSpace("Products", maxSymbol) + "| " + addWhiteSpace("Price", maxPrice) + "| " + addWhiteSpace("Order created", maxSymbol) + "| " + addWhiteSpace("Time of purchase", maxSymbol) + "| ";
+            String headline = Utility.addWhiteSpace("Username", maxSymbol) + "| " +
+                    Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " + Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
             System.out.println(headline);
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
-                System.out.println(addWhiteSpace(orderInfo[0], maxSymbol) + "| " + addWhiteSpace(orderInfo[1], maxSymbol) + "| " + addWhiteSpace(orderInfo[2], maxPrice) + "| " +
-                        addWhiteSpace(orderInfo[3], maxSymbol) + "| " + addWhiteSpace(orderInfo[4], maxSymbol) + "| ");
+                System.out.println(Utility.addWhiteSpace(orderInfo[0], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[1], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + "| " +
+                        Utility.addWhiteSpace(orderInfo[3], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[4], maxSymbol) + "| ");
 
                     receipts ++;
+                if (receipts%2 == 1){
+                    System.out.println("-".repeat(headline.length()));
+                }
             }
             if(receipts == 0){
                 System.out.println("No order history found!");
@@ -85,12 +88,6 @@ public class OrderHandler {
     }
 
 
-    private String addWhiteSpace(String text, int maxAmount){
-        if(text.length() > maxAmount){
-            return text.substring(0, maxAmount - 3) + "...";
-        }
-        return text + " ".repeat(maxAmount - text.length());
-    }
 
     public void addOrderToList(Customer customer) {
         if (Utility.addItemToTextFile(customer.getCart().formatedStringForFile(), FILENAME)) {

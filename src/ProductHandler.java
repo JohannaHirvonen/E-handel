@@ -44,29 +44,23 @@ public class ProductHandler {
             int maxCategory = 50;
             int maxPrice = 1000;
 
-            String headline = "Id |" + addWhiteSpace("Product Name", maxProductName) + "| " +
-                    addWhiteSpace("Category", maxCategory) + "| " +
-                    addWhiteSpace( "Price", maxPrice) ;
+            String headline = "Id |" + Utility.addWhiteSpace("Product Name", maxProductName) + "| " +
+                    Utility.addWhiteSpace("Category", maxCategory) + "| " +
+                    Utility.addWhiteSpace( "Price", maxPrice) ;
             System.out.println(headline);
 
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.productList.size(); i++) {
                 System.out.println(i + ": " +
-                        addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
-                        addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
-                        addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
+                        Utility.addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
+                        Utility.addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
+                        Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
                 if (i%2 == 1){
                     System.out.println("-".repeat(headline.length()));
                 }
             }
         }
-    }
-    private String addWhiteSpace(String text, int maxAmount){
-        if(text.length() > maxAmount){
-            return text.substring(0, maxAmount - 3) + "...";
-        }
-        return text + " ".repeat(maxAmount - text.length());
     }
 
     public void addProductToList(Product newProduct) {

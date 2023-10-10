@@ -59,17 +59,17 @@ public class CustomerHandler {
             int maxUserName = 30;
             int maxPassword = 30;
 
-            String headline = "ID " + addWhiteSpace("Username", maxUserName) + "| " +
+            String headline = "ID " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
 
-                    addWhiteSpace("Password", maxPassword) + "| ";
+                    Utility.addWhiteSpace("Password", maxPassword) + "| ";
             System.out.println(headline);
 
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.customerList.size(); i++) {
                 System.out.println(i + ": " +
-                        addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
-                        addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
+                        Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
+                        Utility.addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
 
                 if (i%2 == 1){
                     System.out.println("-".repeat(headline.length()));
@@ -77,12 +77,7 @@ public class CustomerHandler {
             }
         }
     }
-    private String addWhiteSpace(String text, int maxAmount){
-        if(text.length() > maxAmount){
-            return text.substring(0, maxAmount - 3) + "...";
-        }
-        return text + " ".repeat(maxAmount - text.length());
-    }
+
 
     public Customer getCustomerByName(String username) {
         for(Customer customer : customerList){
