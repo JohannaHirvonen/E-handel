@@ -1,18 +1,16 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
 
-    public static final String FILE_NAME = "Order.txt";
     private double totalPrice;
     private String timeCreated;
     private String timeCompleted;
     private String customerID;
     private ArrayList<Product> products;
     private String productString;
-    private boolean completed;
+    private boolean isCompleted;
 
     public Order(String customerID){
         LocalDateTime time = LocalDateTime.now();
@@ -24,10 +22,14 @@ public class Order {
 
 
     public Order(String customerID, String productString, double totalPrice, String timeCreated,
-                 String timeCompleted, boolean completed){
-        this.timeCreated = timeCreated;
+                 String timeCompleted, boolean isCompleted){
         this.customerID = customerID;
         this.productString = productString;
+        this.totalPrice = totalPrice;
+        this.timeCreated = timeCreated;
+        this.timeCompleted = timeCompleted;
+        this.isCompleted = isCompleted;
+
     }
 
     public ArrayList<Product> getProducts(){
@@ -56,7 +58,7 @@ public class Order {
         LocalDateTime time = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         timeCompleted = time.format(formatter);
-        completed = true;
+        isCompleted = true;
     }
 
     public boolean printCart(){
@@ -70,7 +72,7 @@ public class Order {
             printProducts();
             System.out.println("                   ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "Purchase complete" : "Not purchased"));
+            System.out.println("Status: " + (isCompleted ? "Purchase complete" : "Not purchased"));
             return true;
         }
     }
@@ -82,7 +84,7 @@ public class Order {
         System.out.println(productString);
             System.out.println("                                        ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
-            System.out.println("Status: " + (completed ? "Paid" : "Not paid"));
+            System.out.println("Status: " + (isCompleted ? "Paid" : "Not paid"));
     }
 
     private void printProducts() {
@@ -99,7 +101,7 @@ public class Order {
                         totalPrice + "," +
                         timeCreated + "," +
                         timeCompleted + "," +
-                        completed;
+                        isCompleted;
     }
 
     private String productsToString(){
@@ -109,9 +111,5 @@ public class Order {
         }
         this.productString = productStringBuilder.toString();
         return productString;
-    }
-
-    public String getCustomerID() {
-        return customerID;
     }
 }
