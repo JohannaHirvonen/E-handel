@@ -103,7 +103,6 @@ public class CustomerHandler {
         while (true) {
 
             userIndex = Integer.parseInt(scanner.nextLine());
-
             if (userIndex < 0 || userIndex >= customerList.size()) {
                 System.out.println("Invalid user index! Please enter a valid index.");
             } else {
@@ -154,5 +153,9 @@ public class CustomerHandler {
             customerList.get(userIndex).setPassword(newPassword);
             System.out.println("Information has been changed.");
         }
+    }
+
+    public boolean isValidCustomer(int customerId) {
+        return customerId >= 0 && customerId < customerList.size();
     }
 }
