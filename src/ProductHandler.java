@@ -40,9 +40,10 @@ public class ProductHandler {
         if (this.productList.isEmpty()) {
             System.out.println("No product in the inventory!");
         } else {
-            int maxProductName = 50;
-            int maxCategory = 50;
-            int maxPrice = 8;
+            
+            int maxProductName = WhitespaceValues.PRODUCT_NAME.getValue();
+            int maxCategory = WhitespaceValues.CATEGORY.getValue();
+            int maxPrice = WhitespaceValues.PRICE.getValue();
 
             String headline = "Id |" + Utility.addWhiteSpace("Product Name", maxProductName) + "| " +
                     Utility.addWhiteSpace("Category", maxCategory) + "| " +

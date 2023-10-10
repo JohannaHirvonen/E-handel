@@ -56,8 +56,8 @@ public class CustomerHandler {
             System.out.println("No customers registered!");
         } else {
 
-            int maxUserName = 30;
-            int maxPassword = 30;
+            int maxUserName = WhitespaceValues.USERNAME.getValue();
+            int maxPassword = WhitespaceValues.PASSWORD.getValue();
 
             String headline = "ID " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
 
