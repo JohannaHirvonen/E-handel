@@ -71,7 +71,7 @@ public class CustomerHandler {
                         Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
 
-                if (i%2 == 1){
+                if (i%5 == 0){
                     System.out.println("-".repeat(headline.length()));
                 }
             }

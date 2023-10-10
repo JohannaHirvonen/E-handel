@@ -1,5 +1,4 @@
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,16 +45,17 @@ public class OrderHandler {
             int maxSymbol = 20;
             int maxPrice = 8;
             String headline = Utility.addWhiteSpace("Username", maxSymbol) + "| " +
-                    Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " + Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
+                    Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " +
+                    Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
             System.out.println(headline);
+            System.out.println("-".repeat(headline.length()));
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
                 System.out.println(Utility.addWhiteSpace(orderInfo[0], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[1], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + "| " +
                         Utility.addWhiteSpace(orderInfo[3], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[4], maxSymbol) + "| ");
-
                     receipts ++;
-                if (receipts%2 == 1){
+                if (receipts%5 == 0){
                     System.out.println("-".repeat(headline.length()));
                 }
             }
@@ -67,16 +67,26 @@ public class OrderHandler {
         }
     }
 
-    public void printFromFileByCustomer(String customerID) {
+    public void printOrderHistoryCustomer(String customerID) {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
-                int receipts = 0;
+            int receipts = 0;
+            int maxSymbol = 20;
+            int maxPrice = 8;
+            String headline = Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| "
+                    + Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
+            System.out.println(headline);
+            System.out.println("-".repeat(headline.length()));
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
                 if(orderInfo[0].equals(customerID)){
-                    System.out.println(orderInfo[1] + orderInfo[2] + orderInfo[3] + orderInfo[4]);
+                    System.out.println(Utility.addWhiteSpace(orderInfo[1], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[2], maxSymbol) + "| " +
+                            Utility.addWhiteSpace(orderInfo[3], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[4], maxSymbol) + "| " );
                     receipts ++;
+                    if (receipts%5 == 0){
+                        System.out.println("-".repeat(headline.length()));
+                    }
                 }
             }
             if(receipts == 0){

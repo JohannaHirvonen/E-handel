@@ -81,7 +81,7 @@ public class ECommerceSystem {
                     break;
                 case "3":
                     System.out.println("Purchase history:");
-                    orderHandler.printFromFileByCustomer(customer.getUserID());
+                    orderHandler.printOrderHistoryCustomer(customer.getUserID());
                     break;
                 case "4":
                     run = false;
