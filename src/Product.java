@@ -1,11 +1,11 @@
 public class Product {
     private String name;
-    private String catagory;
+    private String category;
     private double price;
 
-    public Product(String name, String catagory, double price) {
+    public Product(String name, String category, double price) {
         this.name = name;
-        this.catagory = catagory;
+        this.category = category;
         this.price = price;
     }
 
@@ -13,16 +13,16 @@ public class Product {
         return name;
     }
 
-    public String getCatagory() {
-        return catagory;
+    public String getCategory() {
+        return category;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public String formatedStringForFile() {
-        return this.name + "," + this.catagory + "," + this.price;
+    public String formattedStringForFile() {
+        return this.name + "," + this.category + "," + this.price;
     }
 
 }

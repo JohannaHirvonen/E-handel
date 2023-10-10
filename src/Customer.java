@@ -1,15 +1,4 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Customer {
-    public String getUserID() {
-        return userID;
-    }
-
-    public String getPassword() {
-        return password;
-    }
     private String userID;
     private String password;
 
@@ -19,6 +8,13 @@ public class Customer {
         this.userID = userID;
         this.password = password;
         cart = new Order(this.userID);
+    }
+    public String getUserID() {
+        return userID;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public Order getCart(){
