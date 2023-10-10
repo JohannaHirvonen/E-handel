@@ -55,7 +55,7 @@ public class ProductHandler {
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.productList.size(); i++) {
-                System.out.println(Utility.addWhiteSpace(i + "", maxID) + "| " +
+                System.out.println(Utility.addWhiteSpace((i) + "", maxID) + "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getCategory(), maxCategory)+ "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice) + "| ");
