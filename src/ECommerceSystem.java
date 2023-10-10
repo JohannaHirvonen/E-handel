@@ -165,7 +165,7 @@ public class ECommerceSystem {
                 case "1":
                     System.out.println("Enter the ID of the product you want to add to your cart: ");
                     try {
-                        int productId = Integer.parseInt(scan.nextLine());
+                        int productId = Integer.parseInt(scan.nextLine())-1;
 
                         if (productId >= 0 && productId < productHandler.getProductList().size()) {
                             Product selectedProduct = productHandler.getProductList().get(productId);
@@ -187,10 +187,10 @@ public class ECommerceSystem {
                     }
                     System.out.println("Enter the ID of the product you want to remove from your cart: ");
                     try {
-                        int removeProductId = Integer.parseInt(scan.nextLine());
+                        int removeProductId = Integer.parseInt(scan.nextLine())-1;
 
-                        if (removeProductId >= 1 && removeProductId <= customer.getCart().getProducts().size()) {
-                            Product removedProduct = customer.getCart().getProducts().get(removeProductId - 1);
+                        if (removeProductId >= 0 && removeProductId < customer.getCart().getProducts().size()) {
+                            Product removedProduct = customer.getCart().getProducts().get(removeProductId);
                             customer.getCart().removeProduct(removedProduct);
                             System.out.println(removedProduct.getName() + " has been removed from your cart.");
                             customer.getCart().printCart();
@@ -335,7 +335,7 @@ public class ECommerceSystem {
         int id;
         while (true) {
             try {
-                id = Integer.parseInt(scanner.nextLine());
+                id = Integer.parseInt(scanner.nextLine())-1;
                 if (id >= 0 && productHandler.isValidProduct(id)) {
                     break;
                 } else {
@@ -353,7 +353,7 @@ public class ECommerceSystem {
         while (true) {
             try {
                 System.out.println("Which customer (index) do you want to edit?");
-                id = Integer.parseInt(scanner.nextLine());
+                id = Integer.parseInt(scanner.nextLine())-1;
                 if (customerHandler.isValidCustomer(id)) {
                     break;
                 } else {

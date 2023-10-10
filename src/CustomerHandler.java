@@ -73,7 +73,7 @@ public class CustomerHandler {
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.customerList.size(); i++) {
-                System.out.println(Utility.addWhiteSpace(i + "", maxID) + "| " +
+                System.out.println(Utility.addWhiteSpace(i+1 + "", maxID) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getPassword(), maxPassword)+ "| ");
 
