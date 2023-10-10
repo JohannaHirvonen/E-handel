@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
 public class ECommerceSystem {
-    public ProductHandler productHandler;
-    public OrderHandler orderHandler;
-    public CustomerHandler customerHandler;
+    private ProductHandler productHandler;
+    private OrderHandler orderHandler;
+    private CustomerHandler customerHandler;
+    private Customer customer;
+    private static final int MIN_LENGTH = 2;
 
     public ECommerceSystem() {
         productHandler = new ProductHandler();
@@ -32,9 +34,9 @@ public class ECommerceSystem {
                     login.registerCustomer(customerHandler);
                     break;
                 case "2":
-                    Customer customer = login.loginCustomer(customerHandler);
+                    customer = login.loginCustomer(customerHandler);
                     if (customer != null) {
-                        customerMenu(customer);
+                        customerMenu();
                     }
                     break;
                 case "3":
@@ -53,7 +55,7 @@ public class ECommerceSystem {
         }
     }
 
-    private void customerMenu(Customer customer) {
+    private void customerMenu() {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
         while (run) {
@@ -71,10 +73,11 @@ public class ECommerceSystem {
 
             switch (choice) {
                 case "1":
-                    productMenu(customer);
+                    productMenu();
                     break;
                 case "2":
-                    shoppingCartMenu(customer);
+                    shoppingCartMenu();
+                    //TODO shopping cart instance not updated correctly!!
                     break;
                 case "3":
                     System.out.println("Purchase history:");
@@ -90,7 +93,7 @@ public class ECommerceSystem {
         }
     }
 
-    private void shoppingCartMenu(Customer customer) {
+    private void shoppingCartMenu() {
         Scanner scan = new Scanner(System.in);
         if (!customer.getCart().printCart()){
             return;
@@ -140,7 +143,7 @@ public class ECommerceSystem {
         }
     }
 
-    private void productMenu(Customer customer) {
+    private void productMenu() {
         Scanner scan = new Scanner(System.in);
         productHandler.printProductList();
         boolean productMenuActive = true;
@@ -151,7 +154,7 @@ public class ECommerceSystem {
                                 
                     1. Add Product to Cart
                     2. Remove Product from Cart
-                    3. Back to Customer Menu"
+                    3. Back to Customer Menu
                     Enter your choice:""");
 
             String productChoice = scan.nextLine();
@@ -168,6 +171,8 @@ public class ECommerceSystem {
                             customer.getCart().addProduct(selectedProduct);
                             System.out.println(selectedProduct.getName() + " has been added to your cart.");
                             customer.getCart().printCart();
+                            System.out.println("Go back to customer menu to see shopping cart in order to make purchase");
+
                         } else {
                             System.out.println("Invalid product ID! Please enter an ID from the list.");
                         }
@@ -257,9 +262,9 @@ public class ECommerceSystem {
             switch (choice) {
                 case "1":
                     System.out.println("Type the name of the product (at least 2 letters only):");
-                    String name = readLettersWithMinLength(scanner, 2);
+                    String name = readLettersWithMinLength(scanner, MIN_LENGTH);
                     System.out.println("Type the category of the product (at least 2 letters only):");
-                    String category = readLettersWithMinLength(scanner, 2);
+                    String category = readLettersWithMinLength(scanner, MIN_LENGTH);
                     System.out.println("Set the price (numbers only):");
                     double price = readNumbersOnly(scanner);
                     productHandler.addProductToList(new Product(name, category, price));
