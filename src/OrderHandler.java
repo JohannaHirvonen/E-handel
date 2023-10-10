@@ -72,18 +72,24 @@ public class OrderHandler {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
             int receipts = 0;
-            int maxSymbol = 20;
-            int maxPrice = 8;
-            String headline = Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| "
-                    + Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
+            int maxProductString = WhitespaceValues.PRODUCT_STRING.getValue();
+            int maxPrice = WhitespaceValues.PRICE.getValue();
+            int maxDateTime = WhitespaceValues.DATE_TIME.getValue();
+
+            String headline = Utility.addWhiteSpace("Products", maxProductString) +
+                    "| " + Utility.addWhiteSpace("Price", maxPrice) +
+                    "| " + Utility.addWhiteSpace("Order created", maxDateTime) +
+                    "| " + Utility.addWhiteSpace("Time of purchase", maxDateTime) + "| ";
             System.out.println(headline);
             System.out.println("-".repeat(headline.length()));
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
                 if(orderInfo[0].equals(customerID)){
-                    System.out.println(Utility.addWhiteSpace(orderInfo[1], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[2], maxSymbol) + "| " +
-                            Utility.addWhiteSpace(orderInfo[3], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[4], maxSymbol) + "| " );
+                    System.out.println(Utility.addWhiteSpace(orderInfo[1], maxProductString) +
+                            "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) +
+                            "| " + Utility.addWhiteSpace(orderInfo[3], maxDateTime) +
+                            "| " + Utility.addWhiteSpace(orderInfo[4], maxDateTime) + "| " );
                     receipts ++;
                     if (receipts%5 == 0){
                         System.out.println("-".repeat(headline.length()));
