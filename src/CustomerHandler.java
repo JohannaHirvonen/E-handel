@@ -95,30 +95,21 @@ public class CustomerHandler {
         }
         return false;
     }
-
-    public void editCustomer(Scanner scanner) {
-        System.out.println("Which customer (index) do you want to edit?");
-        int userIndex;
-
-        while (true) {
-
-            userIndex = Integer.parseInt(scanner.nextLine());
-            if (userIndex < 0 || userIndex >= customerList.size()) {
-                System.out.println("Invalid user index! Please enter a valid index.");
-            } else {
-                break;
-            }
-        }
+    public void editCustomer(int userIndex, Scanner scanner) {
         System.out.println("If you wish to edit UserID - type 1 \nIf you wish to edit Password - type 2");
         int adminChoice;
 
         while (true) {
-            adminChoice = Integer.parseInt(scanner.nextLine());
+            try {
+                adminChoice = Integer.parseInt(scanner.nextLine());
 
-            if (adminChoice != 1 && adminChoice != 2) {
-                System.out.println("Invalid choice! Please enter 1 for UserID or 2 for Password.");
-            } else {
-                break;
+                if (adminChoice != 1 && adminChoice != 2) {
+                    System.out.println("Invalid choice! Please enter 1 for UserID or 2 for Password.");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter 1 or 2 only.");
             }
         }
 
