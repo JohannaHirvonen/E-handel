@@ -56,8 +56,8 @@ public class CustomerHandler {
             System.out.println("No customers registered!");
         } else {
 
-            int maxUserName = 30;
-            int maxPassword = 30;
+            int maxUserName = WhitespaceValues.USERNAME.getValue();
+            int maxPassword = WhitespaceValues.PASSWORD.getValue();
 
             String headline = "ID " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
 
@@ -71,7 +71,7 @@ public class CustomerHandler {
                         Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
 
-                if (i%2 == 1){
+                if (i%5 == 0){
                     System.out.println("-".repeat(headline.length()));
                 }
             }
