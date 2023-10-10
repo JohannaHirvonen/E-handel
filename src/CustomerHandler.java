@@ -5,7 +5,12 @@ import java.util.Scanner;
 
 public class CustomerHandler {
     private static final String FILENAME = "Customer.txt";
-    public ArrayList<Customer> customerList;
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    private ArrayList<Customer> customerList;
 
     public CustomerHandler() {
         Utility.createTextFile(FILENAME);

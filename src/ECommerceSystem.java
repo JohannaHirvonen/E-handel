@@ -145,6 +145,9 @@ public class ECommerceSystem {
     private void productMenu() {
         Scanner scan = new Scanner(System.in);
         productHandler.printProductList();
+        if(productHandler.getProductList().isEmpty()){
+            return;
+        }
         boolean productMenuActive = true;
         while (productMenuActive) {
             System.out.println("""
@@ -230,19 +233,21 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     customerHandler.printCustomerList();
-                    System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
-                    String edit = "";
-                    while (!edit.equals("no") || !edit.equals("yes")) {
-                        edit = scan.nextLine().toLowerCase();
-                        if (edit.equals("yes")) {
-                            int id = readValidCustomerId(scan);
-                            customerHandler.editCustomer(id, scan);
-                        } else if (edit.equals("no")) {
-                            break;
+                    if(!customerHandler.getCustomerList().isEmpty()){
+                        System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
+                        String edit = "";
+                        while (!edit.equals("no") || !edit.equals("yes")) {
+                            edit = scan.nextLine().toLowerCase();
+                            if (edit.equals("yes")) {
+                                int id = readValidCustomerId(scan);
+                                customerHandler.editCustomer(id, scan);
+                            } else if (edit.equals("no")) {
+                                break;
+                            }
+                            System.out.println("Please enter yes or no.");
                         }
-                        System.out.println("Please enter yes or no.");
                     }
-                        break;
+                    break;
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
                     break;
@@ -281,12 +286,16 @@ public class ECommerceSystem {
                     productHandler.printProductList();
                     break;
                 case "2":
-                    System.out.println("Which product do you want to remove (enter product ID):");
-                    int id = readValidProductId(scanner);
-                    if (id != -1) {
-                        productHandler.removeProductFromList(id);
-                        System.out.println("The product has been removed from the list.");
-                        productHandler.printProductList();
+                    if(!productHandler.getProductList().isEmpty()){
+                        System.out.println("Which product do you want to remove (enter product ID):");
+                        int id = readValidProductId(scanner);
+                        if (id != -1) {
+                            productHandler.removeProductFromList(id);
+                            System.out.println("The product has been removed from the list.");
+                            productHandler.printProductList();
+                        }
+                    } else {
+                        System.out.println("No product in the inventory!");
                     }
                     break;
                 case "3":
@@ -352,7 +361,7 @@ public class ECommerceSystem {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a number between 0 and " +
-                        customerHandler.customerList.size() + ".");
+                        customerHandler.getCustomerList().size() + ".");
             }
         }
         return id;
