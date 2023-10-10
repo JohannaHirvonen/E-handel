@@ -52,6 +52,7 @@ public class OrderHandler {
                 String[] orderInfo = order.split(",");
                 System.out.println(addWhiteSpace(orderInfo[0], maxSymbol) + addWhiteSpace(orderInfo[1], maxSymbol) + addWhiteSpace(orderInfo[2], maxPrice) +
                         addWhiteSpace(orderInfo[3], maxSymbol) + addWhiteSpace(orderInfo[4], maxSymbol));
+
                     receipts ++;
             }
             if(receipts == 0){
