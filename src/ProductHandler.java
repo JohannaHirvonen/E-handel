@@ -35,18 +35,17 @@ public class ProductHandler {
         return productList;
     }
 
-
     public void printProductList() {
 
-        if (this.productList.size() == 0) {
+        if (this.productList.isEmpty()) {
             System.out.println("No product in the inventory!");
         } else {
             int maxProductName = 50;
-            int maxCatagory = 50;
+            int maxCategory = 50;
             int maxPrice = 1000;
 
             String headline = "Id |" + addWhiteSpace("Product Name", maxProductName) + "| " +
-                    addWhiteSpace("Catagory", maxCatagory) + "| " +
+                    addWhiteSpace("Category", maxCategory) + "| " +
                     addWhiteSpace( "Price", maxPrice) ;
             System.out.println(headline);
 
@@ -55,7 +54,7 @@ public class ProductHandler {
             for (int i = 0; i < this.productList.size(); i++) {
                 System.out.println(i + ": " +
                         addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
-                        addWhiteSpace(this.productList.get(i).getCatagory() + "", maxCatagory)+ "| " +
+                        addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
                         addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
                 if (i%2 == 1){
                     System.out.println("-".repeat(headline.length()));
@@ -71,7 +70,7 @@ public class ProductHandler {
     }
 
     public void addProductToList(Product newProduct) {
-        if (Utility.addItemToTextFile(newProduct.formatedStringForFile(), FILENAME)) {
+        if (Utility.addItemToTextFile(newProduct.formattedStringForFile(), FILENAME)) {
             this.productList.add(newProduct);
             System.out.println("Product added to the list.");
         }
@@ -80,81 +79,29 @@ public class ProductHandler {
         return productId >= 0 && productId < productList.size();
     }
 
-
     public void removeProductFromList(int id) {
         this.productList.remove(id);
         removeProductFromTextFile();
     }
-    public boolean removeProductYesOrNo(){
-        return false;
-    }
+
     private boolean removeProductFromTextFile() {
         try {
             FileOutputStream fos = new FileOutputStream(FILENAME);
             PrintStream printStream = new PrintStream(fos);
             for (int i = 0; i < productList.size(); i++) {
                 if(i == 0){
-                    printStream.print(productList.get(i).formatedStringForFile());
+                    printStream.print(productList.get(i).formattedStringForFile());
                 } else {
-                    printStream.print("\n" + productList.get(i).formatedStringForFile());
+                    printStream.print("\n" + productList.get(i).formattedStringForFile());
                 }
             }
-
             fos.close();
             printStream.close();
             return true;
         } catch (Exception e) {
             System.out.println("An error occurred! " + e.getMessage());
         }
-
         return false;
     }
 }
-
-//    public void registerProduct() {
-//        Product product = new Product();
-//        Scanner scan = new Scanner(System.in);
-//
-//        String productName = "";
-//        String catagory = "";
-//        int price = 0;
-//
-//        boolean run = true;
-//        while (run) {
-//            System.out.println("Register a product" +
-//                    "\n1. Product - " + productName +
-//                    "\n2. Category - " + catagory +
-//                    "\n3. Price - " + price +
-//                    "\n4. Save" +
-//                    "\nQ. Back to main meny" +
-//                    "\n\n Choice -");
-//            String choice = scan.nextLine();
-//
-//            switch (choice) {
-//                case "1":
-//                    System.out.println("Product: ");
-//                    productName = scan.nextLine();
-//                    break;
-//                case "2":
-//                    System.out.println("Category: ");
-//                    catagory = scan.nextInt();
-//                    break;
-//                case "3":
-//                    System.out.println("Price: ");
-//                    price = scan.nextLine();
-//                    break;
-//                case "4":
-//                    Product tempProduct = new Product(productName, catagory, price);
-//                    Object productHandler;
-//                    productHandler.addProdctToList(tempProduct);
-//                    run = false;
-//                    break;
-//                case "Q":
-//                    run = false;
-//                    break;
-//                default:
-//                    System.out.println("Must choose 1 - 4 or Q.");
-//            }
-//        }
-//    }
 
