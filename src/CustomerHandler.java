@@ -153,4 +153,8 @@ public class CustomerHandler {
             System.out.println("Information has been changed.");
         }
     }
+
+    public boolean isValidCustomer(int customerId) {
+        return customerId >= 0 && customerId < customerList.size();
+    }
 }

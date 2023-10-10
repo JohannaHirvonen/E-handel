@@ -234,13 +234,21 @@ public class ECommerceSystem {
                     //TODO atlernative "NO"
                     String edit = scan.nextLine().toLowerCase();
                     if (edit.equals("yes")) {
-                        customerHandler.editCustomer(scan);
+
+                        int id = readValidCustomerId(scan);
+                        if(customerHandler.isValidCustomer(id)){
+                            customerHandler.editCustomer(scan);
+
                     }else{
                     adminMenu();
                     }
                     customerHandler.printCustomerList();
                     break;
                     //TODO crash handling when invalid input
+                }
+                break;
+
+
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
                     break;
@@ -330,6 +338,23 @@ public class ECommerceSystem {
                     break;
                 } else {
                     System.out.println("Invalid product ID! Please enter a valid product ID.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter numbers only.");
+            }
+        }
+        return id;
+    }
+
+    private int readValidCustomerId(Scanner scanner) {
+        int id;
+        while (true) {
+            try {
+                id = Integer.parseInt(scanner.nextLine());
+                if (id >= 0 && customerHandler.isValidCustomer(id)) {
+                    break;
+                } else {
+                    System.out.println("Invalid customer ID! Please enter a valid customer ID.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter numbers only.");
