@@ -67,11 +67,9 @@ public class Order {
             System.out.println("No products in cart. Go to product list to add products.");
             return false;
         } else {
-
             System.out.println("Your shopping cart contains:");
             printProducts();
-            System.out.println("                   ");
-            System.out.println("Total cost: " + getTotalPrice() + " kr");
+            System.out.println("Total price for items in cart: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (isCompleted ? "Purchase complete" : "Not purchased"));
             return true;
         }
@@ -79,9 +77,8 @@ public class Order {
 
     public void printReceipt(){
             System.out.println("Receipt:" +
-                    "\nCreated: " + timeCreated);
+                    "\nOrder Created: " + timeCreated);
             printProducts();
-            System.out.println("                                        ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (isCompleted ? "Paid" : "Not paid"));
     }
@@ -89,7 +86,7 @@ public class Order {
     private void printProducts() {
         System.out.println("Products: ");
         for(Product product : products){
-            System.out.println(product.getName() + "..............." + product.getPrice());
+            System.out.println(Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice());
         }
     }
 

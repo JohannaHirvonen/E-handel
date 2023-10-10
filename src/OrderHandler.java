@@ -43,19 +43,21 @@ public class OrderHandler {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
             int receipts = 0;
-            int maxSymbol = WhitespaceValues.DEFAULT.getValue();
+            int maxUsername = WhitespaceValues.USERNAME.getValue();
+            int maxProduct = WhitespaceValues.PRODUCT_STRING.getValue();
             int maxPrice = WhitespaceValues.PRICE.getValue();
+            int maxTime = WhitespaceValues.DATE_TIME.getValue();
 
-            String headline = Utility.addWhiteSpace("Username", maxSymbol) + "| " +
-                    Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " +
-                    Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
+            String headline = Utility.addWhiteSpace("Username", maxUsername) + "| " +
+                    Utility.addWhiteSpace("Products", maxProduct) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " +
+                    Utility.addWhiteSpace("Order created", maxTime) + "| " + Utility.addWhiteSpace("Time of purchase", maxTime) + "| ";
             System.out.println(headline);
             System.out.println("-".repeat(headline.length()));
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
-                System.out.println(Utility.addWhiteSpace(orderInfo[0], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[1], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + "| " +
-                        Utility.addWhiteSpace(orderInfo[3], maxSymbol) + "| " + Utility.addWhiteSpace(orderInfo[4], maxSymbol) + "| ");
+                System.out.println(Utility.addWhiteSpace(orderInfo[0], maxUsername) + "| " + Utility.addWhiteSpace(orderInfo[1], maxProduct) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + "| " +
+                        Utility.addWhiteSpace(orderInfo[3], maxTime) + "| " + Utility.addWhiteSpace(orderInfo[4], maxTime) + "| ");
                     receipts ++;
                 if (receipts%5 == 0){
                     System.out.println("-".repeat(headline.length()));
