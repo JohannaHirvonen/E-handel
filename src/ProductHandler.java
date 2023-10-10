@@ -42,11 +42,11 @@ public class ProductHandler {
         } else {
             int maxProductName = 50;
             int maxCategory = 50;
-            int maxPrice = 1000;
+            int maxPrice = 8;
 
             String headline = "Id |" + Utility.addWhiteSpace("Product Name", maxProductName) + "| " +
                     Utility.addWhiteSpace("Category", maxCategory) + "| " +
-                    Utility.addWhiteSpace( "Price", maxPrice) ;
+                    Utility.addWhiteSpace( "Price", maxPrice) + "| ";
             System.out.println(headline);
 
             System.out.println("-".repeat(headline.length()));
@@ -55,8 +55,8 @@ public class ProductHandler {
                 System.out.println(i + ": " +
                         Utility.addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
-                        Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice));
-                if (i%2 == 1){
+                        Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice) + "| ");
+                if (i%5 == 1){
                     System.out.println("-".repeat(headline.length()));
                 }
             }
