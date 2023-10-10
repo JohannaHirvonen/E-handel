@@ -46,8 +46,8 @@ public class OrderHandler {
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
-                    System.out.println(orderInfo[0] + orderInfo[1] +
-                            orderInfo[2] + orderInfo[3] + orderInfo[4]);
+                    System.out.println(orderInfo[0] + " " + orderInfo[1] + " " +
+                                    orderInfo[2] + " " + orderInfo[3] + " " + orderInfo[4]);
                     receipts ++;
             }
             if(receipts == 0){
