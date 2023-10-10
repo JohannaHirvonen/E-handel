@@ -101,6 +101,7 @@ public class CustomerHandler {
         int userIndex;
 
         while (true) {
+
             userIndex = Integer.parseInt(scanner.nextLine());
 
             if (userIndex < 0 || userIndex >= customerList.size()) {

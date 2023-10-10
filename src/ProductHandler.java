@@ -40,7 +40,7 @@ public class ProductHandler {
         if (this.productList.isEmpty()) {
             System.out.println("No product in the inventory!");
         } else {
-            
+
             int maxProductName = WhitespaceValues.PRODUCT_NAME.getValue();
             int maxCategory = WhitespaceValues.CATEGORY.getValue();
             int maxPrice = WhitespaceValues.PRICE.getValue();
