@@ -236,26 +236,16 @@ public class ECommerceSystem {
                     if (edit.equals("yes")) {
 
                         int id = readValidCustomerId(scan);
-                        if(customerHandler.isValidCustomer(id)){
-                            customerHandler.editCustomer(scan);
-
-                    }else{
-                    adminMenu();
+                        customerHandler.editCustomer(id, scan);
                     }
                     customerHandler.printCustomerList();
                     break;
-                    //TODO crash handling when invalid input
-                }
-                break;
-
-
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
                     break;
                 case "4":
                     run = false;
                     break;
-
                 default:
                     System.out.println("Invalid choice! Please try again.");
             }
@@ -350,14 +340,16 @@ public class ECommerceSystem {
         int id;
         while (true) {
             try {
+                System.out.println("Which customer (index) do you want to edit?");
                 id = Integer.parseInt(scanner.nextLine());
-                if (id >= 0 && customerHandler.isValidCustomer(id)) {
+                if (customerHandler.isValidCustomer(id)) {
                     break;
                 } else {
                     System.out.println("Invalid customer ID! Please enter a valid customer ID.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input! Please enter numbers only.");
+                System.out.println("Invalid input! Please enter a number between 0 and " +
+                        customerHandler.customerList.size() + ".");
             }
         }
         return id;
