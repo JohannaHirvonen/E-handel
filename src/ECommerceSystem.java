@@ -230,7 +230,13 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     customerHandler.printCustomerList();
-                    customerHandler.editCustomer(scan);
+                    System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
+                    String edit = scan.nextLine().toLowerCase();
+                    if (edit.equals("yes")) {
+                        customerHandler.editCustomer(scan);
+                    }else{
+                    adminMenu();
+                }
                     customerHandler.printCustomerList();
                     break;
                 case "3":
