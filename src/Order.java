@@ -78,10 +78,9 @@ public class Order {
     }
 
     public void printReceipt(){
-        //TODO print english and one line -Joy
             System.out.println("Receipt:" +
                     "\nCreated: " + timeCreated);
-        System.out.println(productString);
+            printProducts();
             System.out.println("                                        ");
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (isCompleted ? "Paid" : "Not paid"));
@@ -107,7 +106,11 @@ public class Order {
     private String productsToString(){
         StringBuilder productStringBuilder = new StringBuilder();
         for (Product product : products) {
-            productStringBuilder.append(" ").append(product.getName());
+            if(productStringBuilder.isEmpty()){
+                productStringBuilder.append(product.getName());
+            } else {
+                productStringBuilder.append(" ").append(product.getName());
+            }
         }
         this.productString = productStringBuilder.toString();
         return productString;

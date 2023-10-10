@@ -31,6 +31,7 @@ public class OrderHandler {
             }
         } catch (FileNotFoundException e) {
             System.out.println(" FEL!!! " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,6 +66,7 @@ public class OrderHandler {
             }
         } catch (FileNotFoundException e) {
             System.out.println(" FEL!!! " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -101,6 +103,7 @@ public class OrderHandler {
             }
         } catch (FileNotFoundException e) {
             System.out.println(" Error " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -110,32 +113,5 @@ public class OrderHandler {
         if (Utility.addItemToTextFile(customer.getCart().formatedStringForFile(), FILENAME)) {
             this.orderList.add(customer.getCart());
         }
-    }
-
-
-    public void removeOrderFromList(Order oldOrder) {
-        if (removeOrderFromTextFile()) {
-            this.orderList.remove(oldOrder);
-        }
-    }
-    public boolean removeOrderYesOrNo(){
-        return false;
-    }
-    private boolean removeOrderFromTextFile() {
-        try {
-            FileOutputStream fos = new FileOutputStream(FILENAME);
-            PrintStream printStream = new PrintStream(fos);
-            for (Order order : orderList) {
-                printStream.print("\n" + order.formatedStringForFile());
-            }
-
-            fos.close();
-            printStream.close();
-            return true;
-        } catch (Exception e) {
-            System.out.println("Error! " + e.getMessage());
-        }
-
-        return false;
     }
 }

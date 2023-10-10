@@ -40,7 +40,7 @@ public class ECommerceSystem {
                     }
                     break;
                 case "3":
-                    if (login.adminLogin(customerHandler)) {
+                    if (login.adminLogin()) {
                         adminMenu();
                     }
                     break;
@@ -77,7 +77,6 @@ public class ECommerceSystem {
                     break;
                 case "2":
                     shoppingCartMenu();
-                    //TODO shopping cart instance not updated correctly!!
                     break;
                 case "3":
                     System.out.println("Purchase history:");
@@ -164,7 +163,6 @@ public class ECommerceSystem {
                     System.out.println("Enter the ID of the product you want to add to your cart: ");
                     try {
                         int productId = Integer.parseInt(scan.nextLine());
-                        //Nice to have: how many would you like?
 
                         if (productId >= 0 && productId < productHandler.getProductList().size()) {
                             Product selectedProduct = productHandler.getProductList().get(productId);
@@ -272,9 +270,9 @@ public class ECommerceSystem {
             switch (choice) {
                 case "1":
                     System.out.println("Type the name of the product (at least 2 letters only):");
-                    String name = readLettersWithMinLength(scanner, MIN_LENGTH);
+                    String name = readLettersWithMinLength(scanner);
                     System.out.println("Type the category of the product (at least 2 letters only):");
-                    String category = readLettersWithMinLength(scanner, MIN_LENGTH);
+                    String category = readLettersWithMinLength(scanner);
                     System.out.println("Set the price (numbers only):");
                     double price = readNumbersOnly(scanner);
                     productHandler.addProductToList(new Product(name, category, price));
@@ -298,14 +296,14 @@ public class ECommerceSystem {
         } while (!choice.equals("4"));
     }
 
-    private String readLettersWithMinLength(Scanner scanner, int minLength) {
+    private String readLettersWithMinLength(Scanner scanner) {
         String input;
         do {
             input = scanner.nextLine();
-            if (!input.matches("^[A-Za-z]+$") || input.length() < minLength) {
-                System.out.println("Invalid input! Please enter at least " + minLength + " letters.");
+            if (!input.matches("^[A-Za-z]+$") || input.length() < ECommerceSystem.MIN_LENGTH) {
+                System.out.println("Invalid input! Please enter at least " + ECommerceSystem.MIN_LENGTH + " letters.");
             }
-        } while (!input.matches("^[A-Za-z]+$") || input.length() < minLength);
+        } while (!input.matches("^[A-Za-z]+$") || input.length() < ECommerceSystem.MIN_LENGTH);
         return input;
     }
 

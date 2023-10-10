@@ -27,6 +27,7 @@ public class CustomerHandler {
                 }
             } catch (FileNotFoundException e) {
                 System.out.println(" Error! " + e.getMessage());
+                throw new RuntimeException(e);
             }
     }
 
@@ -60,7 +61,6 @@ public class CustomerHandler {
             int maxPassword = WhitespaceValues.PASSWORD.getValue();
 
             String headline = "ID " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
-
                     Utility.addWhiteSpace("Password", maxPassword) + "| ";
             System.out.println(headline);
 
@@ -69,7 +69,7 @@ public class CustomerHandler {
             for (int i = 0; i < this.customerList.size(); i++) {
                 System.out.println(i + ": " +
                         Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
-                        Utility.addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
+                        Utility.addWhiteSpace(this.customerList.get(i).getPassword(), maxPassword)+ "| ");
 
                 if (i%5 == 0){
                     System.out.println("-".repeat(headline.length()));
@@ -78,15 +78,6 @@ public class CustomerHandler {
         }
     }
 
-
-    public Customer getCustomerByName(String username) {
-        for(Customer customer : customerList){
-            if(customer.getUserID().equals(username)){
-                return customer;
-            }
-        }
-        return null;
-    }
     private boolean customerExists(String customerID){
         for (Customer customer : customerList) {
             if (customer.getUserID().equals(customerID)) {

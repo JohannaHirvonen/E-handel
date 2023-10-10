@@ -1,5 +1,7 @@
-import java.io.*;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Utility {
@@ -36,9 +38,8 @@ public class Utility {
             return true;
         } catch (Exception e) {
             System.out.println("An error occurred! " + e.getMessage());
+            throw new RuntimeException(e);
         }
-
-        return false;
     }
     public static String addWhiteSpace(String text, int maxAmount){
         if(text.length() > maxAmount){

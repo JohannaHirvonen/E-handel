@@ -66,7 +66,7 @@ public class Login {
         }
     }
 
-    public boolean adminLogin(CustomerHandler customerHandler) {
+    public boolean adminLogin() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter username: ");
         String enteredUsername = scan.nextLine();

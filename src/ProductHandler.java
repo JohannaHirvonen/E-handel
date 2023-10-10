@@ -28,6 +28,7 @@ public class ProductHandler {
                 }
             } catch (FileNotFoundException e) {
                 System.out.println(" An error occurred. " + e.getMessage());
+                throw new RuntimeException(e);
             }
     }
 
@@ -55,7 +56,7 @@ public class ProductHandler {
             for (int i = 0; i < this.productList.size(); i++) {
                 System.out.println(i + ": " +
                         Utility.addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
-                        Utility.addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
+                        Utility.addWhiteSpace(this.productList.get(i).getCategory(), maxCategory)+ "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice) + "| ");
                 if (i%5 == 1){
                     System.out.println("-".repeat(headline.length()));
@@ -79,7 +80,7 @@ public class ProductHandler {
         removeProductFromTextFile();
     }
 
-    private boolean removeProductFromTextFile() {
+    private void removeProductFromTextFile() {
         try {
             FileOutputStream fos = new FileOutputStream(FILENAME);
             PrintStream printStream = new PrintStream(fos);
@@ -92,11 +93,10 @@ public class ProductHandler {
             }
             fos.close();
             printStream.close();
-            return true;
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("An error occurred! " + e.getMessage());
+            throw new RuntimeException(e);
         }
-        return false;
     }
 }
 
