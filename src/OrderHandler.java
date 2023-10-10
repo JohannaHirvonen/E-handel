@@ -50,6 +50,7 @@ public class OrderHandler {
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
+                System.out.println(headline);
                 System.out.println(addWhiteSpace(orderInfo[0], maxSymbol) + addWhiteSpace(orderInfo[1], maxSymbol) + addWhiteSpace(orderInfo[2], maxPrice) +
                         addWhiteSpace(orderInfo[3], maxSymbol) + addWhiteSpace(orderInfo[4], maxSymbol));
 
