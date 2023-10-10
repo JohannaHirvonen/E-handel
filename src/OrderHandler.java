@@ -43,8 +43,9 @@ public class OrderHandler {
         try {
             Scanner scan = new Scanner(new File(FILENAME));
             int receipts = 0;
-            int maxSymbol = 20;
-            int maxPrice = 8;
+            int maxSymbol = WhitespaceValues.DEFAULT.getValue();
+            int maxPrice = WhitespaceValues.PRICE.getValue();
+
             String headline = Utility.addWhiteSpace("Username", maxSymbol) + "| " +
                     Utility.addWhiteSpace("Products", maxSymbol) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " + Utility.addWhiteSpace("Order created", maxSymbol) + "| " + Utility.addWhiteSpace("Time of purchase", maxSymbol) + "| ";
             System.out.println(headline);
