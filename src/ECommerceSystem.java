@@ -181,7 +181,9 @@ public class ECommerceSystem {
                     }
                     break;
                 case "2":
-                    customer.getCart().printCart();
+                    if (!customer.getCart().printCart()){
+                        break;
+                    }
                     System.out.println("Enter the ID of the product you want to remove from your cart: ");
                     try {
                         int removeProductId = Integer.parseInt(scan.nextLine());

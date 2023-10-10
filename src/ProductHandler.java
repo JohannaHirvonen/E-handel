@@ -44,8 +44,9 @@ public class ProductHandler {
             int maxProductName = WhitespaceValues.PRODUCT_NAME.getValue();
             int maxCategory = WhitespaceValues.CATEGORY.getValue();
             int maxPrice = WhitespaceValues.PRICE.getValue();
+            int maxID = WhitespaceValues.ID.getValue();
 
-            String headline = "Id |" + Utility.addWhiteSpace("Product Name", maxProductName) + "| " +
+            String headline = Utility.addWhiteSpace("ID", maxID) + "| " + Utility.addWhiteSpace("Product", maxProductName) + "| " +
                     Utility.addWhiteSpace("Category", maxCategory) + "| " +
                     Utility.addWhiteSpace( "Price", maxPrice) + "| ";
             System.out.println(headline);
@@ -53,7 +54,7 @@ public class ProductHandler {
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.productList.size(); i++) {
-                System.out.println(i + ": " +
+                System.out.println(Utility.addWhiteSpace(i + "", maxID) + "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getName(), maxProductName) + "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getCategory() + "", maxCategory)+ "| " +
                         Utility.addWhiteSpace(this.productList.get(i).getPrice() + "", maxPrice) + "| ");

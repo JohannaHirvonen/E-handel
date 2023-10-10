@@ -7,7 +7,8 @@ public enum WhitespaceValues {
     CATEGORY(20),
     PASSWORD(20),
     PRODUCT_STRING(50),
-    DATE_TIME(20);
+    DATE_TIME(20),
+    ID(4);
 
     private final int value;
 

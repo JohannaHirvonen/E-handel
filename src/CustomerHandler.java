@@ -58,16 +58,16 @@ public class CustomerHandler {
 
             int maxUserName = WhitespaceValues.USERNAME.getValue();
             int maxPassword = WhitespaceValues.PASSWORD.getValue();
+            int maxID = WhitespaceValues.ID.getValue();
 
-            String headline = "ID " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
-
+            String headline = Utility.addWhiteSpace("ID", maxID) + "| " + Utility.addWhiteSpace("Username", maxUserName) + "| " +
                     Utility.addWhiteSpace("Password", maxPassword) + "| ";
             System.out.println(headline);
 
             System.out.println("-".repeat(headline.length()));
 
             for (int i = 0; i < this.customerList.size(); i++) {
-                System.out.println(i + ": " +
+                System.out.println(Utility.addWhiteSpace(i + "", maxID) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getUserID(), maxUserName) + "| " +
                         Utility.addWhiteSpace(this.customerList.get(i).getPassword() + "", maxPassword)+ "| ");
 
