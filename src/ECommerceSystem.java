@@ -231,15 +231,18 @@ public class ECommerceSystem {
                 case "2":
                     customerHandler.printCustomerList();
                     System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
-                    //TODO atlernative "NO"
-                    String edit = scan.nextLine().toLowerCase();
-                    if (edit.equals("yes")) {
-
-                        int id = readValidCustomerId(scan);
-                        customerHandler.editCustomer(id, scan);
+                    String edit = "";
+                    while (!edit.equals("no") || !edit.equals("yes")) {
+                        edit = scan.nextLine().toLowerCase();
+                        if (edit.equals("yes")) {
+                            int id = readValidCustomerId(scan);
+                            customerHandler.editCustomer(id, scan);
+                        } else if (edit.equals("no")) {
+                            break;
+                        }
+                        System.out.println("Please enter yes or no.");
                     }
-                    customerHandler.printCustomerList();
-                    break;
+                        break;
                 case "3":
                     orderHandler.printOrderHistoryAdmin();
                     break;
