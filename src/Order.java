@@ -62,7 +62,7 @@ public class Order {
     }
 
     public boolean printCart(){
-
+// TODO formatera så att den ser ut som de andra listorna (addwhitespace).
         if (this.products.isEmpty()) {
             System.out.println("No products in cart. Go to product list to add products.");
             return false;
@@ -86,7 +86,7 @@ public class Order {
     private void printProducts() {
         System.out.println("Products: ");
         for(Product product : products){
-            System.out.println(Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice());
+            System.out.println(Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice() + " kr.");
         }
     }
 

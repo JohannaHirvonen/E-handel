@@ -49,14 +49,14 @@ public class OrderHandler {
             int maxTime = WhitespaceValues.DATE_TIME.getValue();
 
             String headline = Utility.addWhiteSpace("Username", maxUsername) + "| " +
-                    Utility.addWhiteSpace("Products", maxProduct) + "| " + Utility.addWhiteSpace("Price", maxPrice) + "| " +
+                    Utility.addWhiteSpace("Products", maxProduct) + "| " + Utility.addWhiteSpace("Price", maxPrice)  + "   " + "| " +
                     Utility.addWhiteSpace("Order created", maxTime) + "| " + Utility.addWhiteSpace("Time of purchase", maxTime) + "| ";
             System.out.println(headline);
             System.out.println("-".repeat(headline.length()));
             while (scan.hasNextLine()) {
                 String order = scan.nextLine();
                 String[] orderInfo = order.split(",");
-                System.out.println(Utility.addWhiteSpace(orderInfo[0], maxUsername) + "| " + Utility.addWhiteSpace(orderInfo[1], maxProduct) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + "| " +
+                System.out.println(Utility.addWhiteSpace(orderInfo[0], maxUsername) + "| " + Utility.addWhiteSpace(orderInfo[1], maxProduct) + "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + " kr" + "| " +
                         Utility.addWhiteSpace(orderInfo[3], maxTime) + "| " + Utility.addWhiteSpace(orderInfo[4], maxTime) + "| ");
                     receipts ++;
                 if (receipts%5 == 0){
@@ -81,7 +81,7 @@ public class OrderHandler {
             int maxDateTime = WhitespaceValues.DATE_TIME.getValue();
 
             String headline = Utility.addWhiteSpace("Products", maxProductString) +
-                    "| " + Utility.addWhiteSpace("Price", maxPrice) +
+                    "| " + Utility.addWhiteSpace("Price", maxPrice) + "   " +
                     "| " + Utility.addWhiteSpace("Order created", maxDateTime) +
                     "| " + Utility.addWhiteSpace("Time of purchase", maxDateTime) + "| ";
             System.out.println(headline);
@@ -91,7 +91,7 @@ public class OrderHandler {
                 String[] orderInfo = order.split(",");
                 if(orderInfo[0].equals(customerID)){
                     System.out.println(Utility.addWhiteSpace(orderInfo[1], maxProductString) +
-                            "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) +
+                            "| " + Utility.addWhiteSpace(orderInfo[2], maxPrice) + " kr" +
                             "| " + Utility.addWhiteSpace(orderInfo[3], maxDateTime) +
                             "| " + Utility.addWhiteSpace(orderInfo[4], maxDateTime) + "| " );
                     receipts ++;
