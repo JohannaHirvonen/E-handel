@@ -62,13 +62,13 @@ public class Order {
     }
 
     public boolean printCart(){
-// TODO formatera så att den ser ut som de andra listorna (addwhitespace).
         if (this.products.isEmpty()) {
             System.out.println("No products in cart. Go to product list to add products.");
             return false;
         } else {
             System.out.println("Your shopping cart contains:");
             printProducts();
+            System.out.println("_".repeat(31));
             System.out.println("Total price for items in cart: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (isCompleted ? "Purchase complete" : "Not purchased"));
             return true;
@@ -79,12 +79,14 @@ public class Order {
             System.out.println("Receipt:" +
                     "\nOrder Created: " + timeCreated);
             printProducts();
+            System.out.println("_".repeat(31));
             System.out.println("Total cost: " + getTotalPrice() + " kr");
             System.out.println("Status: " + (isCompleted ? "Paid" : "Not paid"));
     }
 
     private void printProducts() {
         System.out.println("Products: ");
+        System.out.println("_".repeat(31));
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             System.out.println((i+1) + ". " + Utility.addWhiteSpace(product.getName(), WhitespaceValues.PRODUCT_NAME.getValue()) + product.getPrice() + " kr.");

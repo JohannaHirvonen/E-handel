@@ -234,7 +234,7 @@ public class ECommerceSystem {
                 case "2":
                     customerHandler.printCustomerList();
                     if(!customerHandler.getCustomerList().isEmpty()){
-                        System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
+                        System.out.println("Are you sure you want to edit customer?" + "\nYes/No ");
                         String edit = "";
                         while (!edit.equals("no") || !edit.equals("yes")) {
                             edit = scan.nextLine().toLowerCase();
