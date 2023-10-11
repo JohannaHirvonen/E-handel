@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -124,6 +123,7 @@ public class CustomerHandler {
                 }
             }
             customerList.get(userIndex).setID(newUserID);
+            updateCustomerTextFile();
             System.out.println("Information has been changed.");
         } else {
             System.out.println("Please type new password: ");
@@ -139,11 +139,31 @@ public class CustomerHandler {
                 }
             }
             customerList.get(userIndex).setPassword(newPassword);
+            updateCustomerTextFile();
             System.out.println("Information has been changed.");
         }
     }
 
     public boolean isValidCustomer(int customerId) {
         return customerId >= 0 && customerId < customerList.size();
+    }
+
+    private void updateCustomerTextFile() {
+        try {
+            FileOutputStream fos = new FileOutputStream(FILENAME);
+            PrintStream printStream = new PrintStream(fos);
+            for (int i = 0; i < customerList.size(); i++) {
+                if(i == 0){
+                    printStream.print(customerList.get(i).toFileString());
+                } else {
+                    printStream.print("\n" + customerList.get(i).toFileString());
+                }
+            }
+            fos.close();
+            printStream.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred! " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }

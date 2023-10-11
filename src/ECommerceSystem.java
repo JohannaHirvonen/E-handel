@@ -234,13 +234,15 @@ public class ECommerceSystem {
                 case "2":
                     customerHandler.printCustomerList();
                     if(!customerHandler.getCustomerList().isEmpty()){
-                        System.out.println("Are you sure you want to edit customer?" + "\n Yes/No ");
+                        System.out.println("Are you sure you want to edit customer?" +
+                                "\nPlease enter Yes/No ");
                         String edit = "";
                         while (!edit.equals("no") || !edit.equals("yes")) {
                             edit = scan.nextLine().toLowerCase();
                             if (edit.equals("yes")) {
                                 int id = readValidCustomerId(scan);
                                 customerHandler.editCustomer(id, scan);
+                                break;
                             } else if (edit.equals("no")) {
                                 break;
                             }
